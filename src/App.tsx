@@ -1,11 +1,24 @@
 import React from 'react'
-import './App.css'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Main } from './pages/main/Main'
+import { Favorites } from './pages/favorites/Favorites'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Main/>
+  },
+  {
+    path: '/fav',
+    element: <Favorites/>
+  }
+])
 
 function App () {
   return (
-    <div className="App">
-
-    </div>
+      <div>
+          <RouterProvider router={router}/>
+      </div>
   )
 }
 

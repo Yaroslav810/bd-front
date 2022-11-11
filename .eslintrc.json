@@ -11,10 +11,14 @@
     {
       "files": [
         "*.jsx",
-        "*.tsx"
+        "*.tsx",
+        "*.ts"
       ],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": [
+          "off"
+        ],
+        "react/react-in-jsx-scope": [
           "off"
         ]
       }
