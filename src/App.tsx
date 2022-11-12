@@ -5,10 +5,10 @@ import { getRouter } from './routes/routes'
 
 function App () {
   return (
-      <div>
-          <Sidebar />
-          <RouterProvider router={getRouter()}/>
-      </div>
+    <div>
+      <Sidebar />
+      <RouterProvider router={getRouter()}/>
+    </div>
   )
 }
 
