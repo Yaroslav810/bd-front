@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router'
 
 const path = '/logout'
 
-function logoutRoute () {
+function logoutRoute() {
   return {
     getPath: () => path
   }
 }
 
-function useLogoutRoute () {
+function useLogoutRoute() {
   const navigate = useNavigate()
   return {
     goTo: () => navigate(path)

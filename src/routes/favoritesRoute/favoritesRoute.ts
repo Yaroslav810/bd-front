@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router'
 
 const path = '/fav'
 
-function favoritesRoute () {
+function favoritesRoute() {
   return {
     getPath: () => path
   }
 }
 
-function useFavoritesRoute () {
+function useFavoritesRoute() {
   const navigate = useNavigate()
   return {
     goTo: () => navigate(path)
