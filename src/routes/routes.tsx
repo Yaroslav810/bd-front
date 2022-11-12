@@ -5,18 +5,31 @@ import { createBrowserRouter } from 'react-router-dom'
 import { mainRoute } from './mainRoute/mainRoute'
 import { favoritesRoute } from './favoritesRoute/favoritesRoute'
 import { logoutRoute } from './logoutRoute/logoutRoute'
+import { Sidebar } from '../common/sidebar/Sidebar'
+import React from 'react'
 
 const routes: RouteObject[] = [
   {
     path: mainRoute().getPath(),
-    element: <Main/>
+    element: (
+      <div>
+        <Sidebar />
+        <Main/>
+      </div>
+    )
   },
   {
     path: favoritesRoute().getPath(),
-    element: <Favorites/>
+    element: (
+      <div>
+        <Sidebar />
+        <Favorites/>
+      </div>
+    )
   },
   {
-    path: logoutRoute().getPath()
+    path: logoutRoute().getPath(),
+    element: <div></div>
   }
 ]
 

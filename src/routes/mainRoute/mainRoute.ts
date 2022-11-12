@@ -11,7 +11,7 @@ function mainRoute () {
 function useMainRoute () {
   const navigate = useNavigate()
   return {
-    goTo: navigate(path)
+    goTo: () => navigate(path)
   }
 }
 

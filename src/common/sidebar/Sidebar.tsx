@@ -13,39 +13,37 @@ import MenuItem from '@mui/material/MenuItem'
 import AttractionsIcon from '@mui/icons-material/Attractions'
 import { useState } from 'react'
 import { Divider } from '@mui/material'
-
-const settings = [
-  {
-    title: 'Profile',
-    onClick: () => {},
-  },
-  {
-    title: 'Dashboard',
-    onClick: () => {},
-  },
-  null,
-  {
-    title: 'Logout',
-    onClick: () => {},
-  },
-]
+import { useLogoutRoute } from '../../routes/logoutRoute/logoutRoute'
+import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
+import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 
 const HEIGHT_SIDEBAR = 60
 
 function Sidebar () {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
+  const main = useMainRoute()
+  const favorites = useFavoritesRoute()
+  const logout = useLogoutRoute()
 
   const user = {
     name: 'Маслов Мирон'
   }
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget)
-  }
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
-  }
+  const settings = [
+    {
+      title: 'Profile',
+      onClick: main.goTo,
+    },
+    {
+      title: 'Favorites',
+      onClick: favorites.goTo,
+    },
+    null,
+    {
+      title: 'Logout',
+      onClick: logout.goTo,
+    },
+  ]
 
   return <AppBar position="static">
     <Container maxWidth="xl">
@@ -92,7 +90,7 @@ function Sidebar () {
 
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <IconButton onClick={event => setAnchorElUser(event.currentTarget)} sx={{ p: 0 }}>
               <Avatar alt={user.name} src="/static/images/avatar/2.jpg" />
             </IconButton>
           </Tooltip>
@@ -110,15 +108,15 @@ function Sidebar () {
               horizontal: 'right'
             }}
             open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
+            onClose={() => setAnchorElUser(null)}
           >
-            {settings.map((setting) => {
+            {settings.map((setting, index) => {
               if (setting) {
                 return <MenuItem key={setting.title} onClick={setting.onClick}>
                   <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               } else {
-                return <Divider />
+                return <Divider key={index} />
               }
             })}
           </Menu>

@@ -11,7 +11,7 @@ function logoutRoute () {
 function useLogoutRoute () {
   const navigate = useNavigate()
   return {
-    goTo: navigate(path)
+    goTo: () => navigate(path)
   }
 }
 
