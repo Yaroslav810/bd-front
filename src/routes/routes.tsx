@@ -33,7 +33,7 @@ const routes: RouteObject[] = [
   }
 ]
 
-function getRouter () {
+function getRouter() {
   return createBrowserRouter(routes)
 }
 

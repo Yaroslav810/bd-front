@@ -34,6 +34,7 @@
     "react"
   ],
   "rules": {
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "@typescript-eslint/space-before-function-paren": ["error", "never"]
   }
 }
