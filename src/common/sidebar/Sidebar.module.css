@@ -1,0 +1,16 @@
+.sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    height: 60px;
+    background: #C9DC87;
+}
+
+.menu > * {
+    margin-left: 10px;
+}
+
+.menu > *:first-child {
+    margin-left: 0;
+}
