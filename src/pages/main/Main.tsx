@@ -1,6 +1,6 @@
 function Main () {
   return <div>
-      <a href="/fav">Избранное</a>
+    <a href="/fav">Избранное</a>
   </div>
 }
 
