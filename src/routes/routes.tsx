@@ -7,6 +7,7 @@ import { favoritesRoute } from './favoritesRoute/favoritesRoute'
 import { logoutRoute } from './logoutRoute/logoutRoute'
 import { Sidebar } from '../common/sidebar/Sidebar'
 import React from 'react'
+import { Logout } from '../pages/logout/Logout'
 
 const routes: RouteObject[] = [
   {
@@ -29,7 +30,11 @@ const routes: RouteObject[] = [
   },
   {
     path: logoutRoute().getPath(),
-    element: <div></div>
+    element: (
+      <div>
+        <Logout />
+      </div>
+    )
   }
 ]
 
