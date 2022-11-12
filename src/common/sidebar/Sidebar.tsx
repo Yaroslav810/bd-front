@@ -112,7 +112,10 @@ function Sidebar () {
           >
             {settings.map((setting, index) => {
               if (setting) {
-                return <MenuItem key={setting.title} onClick={setting.onClick}>
+                return <MenuItem key={setting.title} onClick={() => {
+                  setting.onClick()
+                  setAnchorElUser(null)
+                }}>
                   <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               } else {
