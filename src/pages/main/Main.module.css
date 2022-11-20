@@ -1,0 +1,15 @@
+.main {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    width: 100%;
+    max-width: 800px;
+}
+
+.card {
+    margin-top: 10px;
+    min-width: 100%;
+}
