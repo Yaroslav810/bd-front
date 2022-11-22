@@ -67,14 +67,13 @@ function Event() {
     loadData
   } = useEvents(params.id as string)
 
-  return <div className={styles.main}>
-    <Button variant="text" startIcon={<ArrowBackIosIcon />} onClick={back}>Назад</Button>
-    {!loaded && <Preloader/>}
-    {
-      (event !== null)
-        ? <Content event={event}/>
-        : <ErrorContent onClick={loadData}/>
-    }
+  return <div>
+    <div>
+      <Button variant="text" startIcon={<ArrowBackIosIcon />} onClick={back}>Назад</Button>
+    </div>
+    {!loaded && <Preloader />}
+    {loaded && event !== null && <Content event={event} />}
+    {loaded && event === null && <ErrorContent onClick={loadData}/>}
   </div>
 }
 
