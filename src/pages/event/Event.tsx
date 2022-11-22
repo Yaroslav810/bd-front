@@ -1,20 +1,23 @@
-import Card from '@mui/material/Card'
-import { CardActionArea, CardContent, CardHeader } from '@mui/material'
-import { Preloader } from '../../common/preloader/Preloader'
-import { Event } from './model/types'
 import { useEvents } from './useEvents'
+import { Preloader } from '../../common/preloader/Preloader'
+import styles from './Event.module.css'
+import { useEventRoute } from '../../routes/eventRoute/eventRoute'
+import Card from '@mui/material/Card'
+import { Button, CardActionArea, CardContent, CardHeader } from '@mui/material'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import Typography from '@mui/material/Typography'
 import Avatar from '@mui/material/Avatar'
 import { blue } from '@mui/material/colors'
 import PersonIcon from '@mui/icons-material/Person'
-import styles from './Main.module.css'
-import { useEventRoute } from '../../routes/eventRoute/eventRoute'
+import { Event as EventType } from './model/types'
+import { useParams } from 'react-router'
+import { useBack } from '../../routes/useBack'
 
-interface ItemProps {
-  event: Event
+interface ContentProps {
+  event: EventType
 }
 
-function Item(props: ItemProps) {
+function Content(props: ContentProps) {
   const route = useEventRoute()
 
   return <Card
@@ -44,18 +47,6 @@ function Item(props: ItemProps) {
   </Card>
 }
 
-interface ListProps {
-  events: Event[]
-}
-
-function List(props: ListProps) {
-  return <div className={styles.list}>
-    {props.events.map(event => (
-      <Item key={event.id} event={event}/>
-    ))}
-  </div>
-}
-
 interface ErrorContentProps {
   onClick: () => void
 }
@@ -67,23 +58,26 @@ function ErrorContent(props: ErrorContentProps) {
   </div>
 }
 
-function Main() {
+function Event() {
+  const back = useBack()
+  const params = useParams()
   const {
-    events,
+    event,
     loaded,
     loadData
-  } = useEvents()
+  } = useEvents(params.id as string)
 
   return <div className={styles.main}>
+    <Button variant="text" startIcon={<ArrowBackIosIcon />} onClick={back}>Назад</Button>
     {!loaded && <Preloader/>}
     {
-      (events != null)
-        ? <List events={events}/>
+      (event !== null)
+        ? <Content event={event}/>
         : <ErrorContent onClick={loadData}/>
     }
   </div>
 }
 
 export {
-  Main
+  Event
 }

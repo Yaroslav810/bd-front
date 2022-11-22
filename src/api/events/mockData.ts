@@ -1,6 +1,7 @@
-import { Event } from '../../pages/main/model/types'
+import { Event as MainPageEvent } from '../../pages/main/model/types'
+import { Event as EventPageEvent } from '../../pages/event/model/types'
 
-function getMockData(): Event[] {
+function getMockDataGetEvents(): MainPageEvent[] {
   return [
     {
       id: '1064dbab-38a7-46f6-a6c7-a47d35527392',
@@ -37,6 +38,20 @@ function getMockData(): Event[] {
   ]
 }
 
+function getMockDataGetEvent(): EventPageEvent {
+  return {
+    id: '1064dbab-38a7-46f6-a6c7-a47d35527392',
+    title: 'Event #2',
+    description: 'Event #2 Description',
+    userName: 'Yaroslav7',
+    start: new Date('2022-11-19T20:27:21.083Z'),
+    duration: 100000,
+    participantsCount: 0,
+    isLikeSet: false
+  }
+}
+
 export {
-  getMockData
+  getMockDataGetEvents,
+  getMockDataGetEvent
 }

@@ -8,6 +8,8 @@ import { logoutRoute } from './logoutRoute/logoutRoute'
 import { Sidebar } from '../common/sidebar/Sidebar'
 import React from 'react'
 import { Logout } from '../pages/logout/Logout'
+import { eventRoute } from './eventRoute/eventRoute'
+import { Event } from '../pages/event/Event'
 
 const routes: RouteObject[] = [
   {
@@ -15,7 +17,7 @@ const routes: RouteObject[] = [
     element: (
       <div>
         <Sidebar />
-        <Main/>
+        <Main />
       </div>
     )
   },
@@ -24,7 +26,7 @@ const routes: RouteObject[] = [
     element: (
       <div>
         <Sidebar />
-        <Favorites/>
+        <Favorites />
       </div>
     )
   },
@@ -33,6 +35,15 @@ const routes: RouteObject[] = [
     element: (
       <div>
         <Logout />
+      </div>
+    )
+  },
+  {
+    path: eventRoute().getPath(),
+    element: (
+      <div>
+        <Sidebar />
+        <Event />
       </div>
     )
   }
