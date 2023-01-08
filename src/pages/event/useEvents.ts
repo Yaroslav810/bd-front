@@ -1,17 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getEvent } from '../../api/events/events'
-import { Event } from './model/types'
+import { useAction, useAtom } from '@reatom/npm-react'
+import { actions, state } from './model/store'
 
 function useEvents(id: string) {
-  const [event, setEvent] = useState<Event | null>(null)
+  const [event] = useAtom(state.event)
+  const handleSetEvent = useAction(actions.setEvent)
   const [loaded, setLoaded] = useState(false)
 
   const handler = useCallback(() => {
-    setEvent(null)
+    handleSetEvent(null)
     setLoaded(false)
     getEvent(id)
-      .then(data => setEvent(data))
-      .catch(() => setEvent(null))
+      .then(data => handleSetEvent(data))
+      .catch(() => handleSetEvent(null))
       .finally(() => setLoaded(true))
   }, [getEvent])
 
