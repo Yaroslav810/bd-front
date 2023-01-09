@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -9,40 +8,37 @@ import Menu from '@mui/material/Menu'
 import Container from '@mui/material/Container'
 import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
-import MenuItem from '@mui/material/MenuItem'
 import AttractionsIcon from '@mui/icons-material/Attractions'
 import { useState } from 'react'
-import { Divider } from '@mui/material'
-import { useLogoutRoute } from '../../routes/logoutRoute/logoutRoute'
+import { Button, Divider, MenuItem } from '@mui/material'
 import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
+import { getUser } from '../../model/states'
+import { authentication, logout } from '../../api/user/user'
 
-const HEIGHT_SIDEBAR = 60
-
-function Sidebar () {
+function Sidebar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
   const main = useMainRoute()
   const favorites = useFavoritesRoute()
-  const logout = useLogoutRoute()
 
-  const user = {
-    name: 'Маслов Мирон'
-  }
+  const user = getUser()
 
   const settings = [
     {
       title: 'Profile',
-      onClick: main.goTo,
+      onClick: main.goTo
     },
     {
       title: 'Favorites',
-      onClick: favorites.goTo,
+      onClick: favorites.goTo
     },
     null,
     {
-      title: 'Logout',
-      onClick: logout.goTo,
-    },
+      title: 'Выйти',
+      onClick: () => {
+        void logout().then(main.goTo)
+      }
+    }
   ]
 
   return <AppBar position="static">
@@ -70,59 +66,72 @@ function Sidebar () {
 
         <AttractionsIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
         <Typography
-         variant="h5"
-         noWrap
-         component="a"
-         href=""
-         sx={{
-           mr: 2,
-           display: { xs: 'flex', md: 'none' },
-           flexGrow: 1,
-           fontFamily: 'monospace',
-           fontWeight: 700,
-           letterSpacing: '.3rem',
-           color: 'inherit',
-           textDecoration: 'none'
-         }}
+          variant="h5"
+          noWrap
+          component="a"
+          href=""
+          sx={{
+            mr: 2,
+            display: { xs: 'flex', md: 'none' },
+            flexGrow: 1,
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: 'inherit',
+            textDecoration: 'none'
+          }}
         >
          PATHWAY
         </Typography>
 
         <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
-            <IconButton onClick={event => setAnchorElUser(event.currentTarget)} sx={{ p: 0 }}>
-              <Avatar alt={user.name} src="/static/images/avatar/2.jpg" />
-            </IconButton>
-          </Tooltip>
-          <Menu
-            sx={{ mt: '45px' }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right'
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right'
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={() => setAnchorElUser(null)}
-          >
-            {settings.map((setting, index) => {
-              if (setting) {
-                return <MenuItem key={setting.title} onClick={() => {
-                  setting.onClick()
-                  setAnchorElUser(null)
-                }}>
-                  <Typography textAlign="center">{setting.title}</Typography>
-                </MenuItem>
-              } else {
-                return <Divider key={index} />
-              }
-            })}
-          </Menu>
+          {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
+          {!!user && <>
+            <Tooltip title="Open settings">
+              <IconButton onClick={event => setAnchorElUser(event.currentTarget)} sx={{ p: 0 }}>
+                <Avatar src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right'
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right'
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={() => setAnchorElUser(null)}
+            >
+              {settings.map((setting, index) => {
+                if (setting != null) {
+                  return <MenuItem key={setting.title} onClick={() => {
+                    setting.onClick()
+                    setAnchorElUser(null)
+                  }}>
+                    <Typography textAlign="center">{setting.title}</Typography>
+                  </MenuItem>
+                } else {
+                  return <Divider key={index} />
+                }
+              })}
+            </Menu>
+          </>}
+          {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
+          {!user && <>
+            <Button
+              color="inherit"
+              onClick={() => {
+                void authentication()
+              }}>
+                Войти
+            </Button>
+          </>}
         </Box>
       </Toolbar>
     </Container>
@@ -130,6 +139,5 @@ function Sidebar () {
 }
 
 export {
-  HEIGHT_SIDEBAR,
   Sidebar
 }

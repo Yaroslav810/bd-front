@@ -11,7 +11,7 @@ function Main() {
 
   let content
   if (!(isLoading === 0)) {
-    content = <Preloader/>
+    content = <Preloader />
   } else {
     content = (data != null)
       ? <List events={data}/>
