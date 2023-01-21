@@ -1,13 +1,18 @@
 import { RouteObject } from 'react-router'
 import { Favorites } from '../pages/favorites/Favorites'
 import { Main } from '../pages/main/Main'
+
 import { createBrowserRouter } from 'react-router-dom'
 import { mainRoute } from './mainRoute/mainRoute'
 import { favoritesRoute } from './favoritesRoute/favoritesRoute'
 import { logoutRoute } from './logoutRoute/logoutRoute'
+import { loginRoute } from './loginRoute/loginRoute'
 import { Sidebar } from '../common/sidebar/Sidebar'
 import React from 'react'
 import { Logout } from '../pages/logout/Logout'
+import { Login } from '../pages/login/Login'
+import { createEventRoute } from './createEventRoute/createEventRoute'
+import { CreateEvent } from '../pages/createEvent/CreateEvent'
 
 const routes: RouteObject[] = [
   {
@@ -15,7 +20,8 @@ const routes: RouteObject[] = [
     element: (
       <div>
         <Sidebar />
-        <Main/>
+            <Main />
+            
       </div>
     )
   },
@@ -32,10 +38,28 @@ const routes: RouteObject[] = [
     path: logoutRoute().getPath(),
     element: (
       <div>
-        <Logout />
+            <Logout />
+           
       </div>
     )
-  }
+    },
+    {
+    path: loginRoute().getPath(),
+    element: (
+        <div>
+            <Login />
+        </div>
+        )
+    },
+    {
+        path: createEventRoute().getPath(),
+        element: (
+            <div>
+                <Sidebar />
+                <CreateEvent />
+            </div>
+        )
+    }
 ]
 
 function getRouter() {

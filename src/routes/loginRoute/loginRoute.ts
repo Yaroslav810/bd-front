@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router'
 
-const path = '/logout'
+const path = '/login'
 
-function logoutRoute() {
+function loginRoute() {
   return {
     getPath: () => path
   }
 }
 
-function useLogoutRoute() {
+function useLoginRoute() {
   const navigate = useNavigate()
   return {
     goTo: () => navigate(path)
@@ -16,6 +16,6 @@ function useLogoutRoute() {
 }
 
 export {
-    logoutRoute,
-    useLogoutRoute
+    loginRoute,
+    useLoginRoute,
 }

@@ -1,0 +1,127 @@
+@import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);
+
+.content {
+    display: flex;
+}
+
+.leftContent, .rightContent {
+    margin: 20px 20px 0 20px;
+}
+
+.leftContent, .info {
+    border-radius: 8.8px;
+    box-shadow: 0 12px 25px rgb(86 87 95 / 20%);
+    margin: auto;
+} 
+
+.leftContent:hover, .info:hover {
+    box-shadow: 0 15px 40px rgb(0 0 0 / 20%);
+    transform: translateY(-8px);
+}
+
+.rightContent {
+    width: 70%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+.rightContent div{
+    height: auto;
+}
+
+.info {
+   
+    //border-radius: 10px;
+}
+
+.rightContent div div{
+   //padding-top: 50px;
+   //margin-top: 50px;
+   min-height: 150px;
+
+}
+
+.infoTop, .infoBottom{
+    display: flex;
+}
+
+.iconButton {
+    width: 250px;
+    height: 250px;
+}
+
+.icon {
+    width: 100%;
+    height: 100%;
+}
+
+
+.info {
+    -ms-flex: 1 0 0;
+    flex: 1 0 0;
+    min-width: 300px;
+    //background-color: blue;
+    //margin: 0 5px 15px 0;
+
+}
+
+.info p:first-child {
+    //margin-top: 30px;
+    margin-top: 12%;
+}
+
+.infoBottom .info p:first-child {
+    margin-top: 7%;
+}
+
+.infoTop div:first-child {
+    margin-right: 10px;
+}
+
+.infoBottom div:first-child {
+    margin-top: 10px;
+}
+
+.userInfo {
+   text-align: center;
+}
+
+
+.container {
+    text-align: center;
+    //display: flex;
+}
+
+.createEventLink {
+    text-decoration: none;
+    background: linear-gradient(to right, transparent, transparent), 
+        linear-gradient(to right, hsl(50, 75%, 55%), hsl(135, 35%, 55%), hsl(155, 35%, 60%));
+    background-size: 100% 3px, 0 3px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat:no-repeat;
+    transition: background-size 400ms;
+    color: black;
+    //margin-top: 10px;
+}
+
+.leftContent:hover .createEventLink {
+    background-size: 0 3px, 100% 3px;
+}
+
+.createEvent {
+    border-radius: 10px;
+    box-shadow: 0 12px 25px rgb(86 87 95 / 20%);
+    //background-color: orange;
+    width: 300px;
+    margin-top: 30px;
+    height: 50px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.info:hover p:nth-child(2) {
+    //font: normal 1.2vw/0 'Signika', sans-serif;
+    color: hsl(135, 35%, 55%);
+}
