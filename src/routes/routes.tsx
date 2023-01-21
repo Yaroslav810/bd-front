@@ -5,7 +5,6 @@ import { favoritesRoute } from './favoritesRoute/favoritesRoute'
 import { logoutRoute } from './logoutRoute/logoutRoute'
 import { loginRoute } from './loginRoute/loginRoute'
 import { Sidebar } from '../common/sidebar/Sidebar'
-import { Login } from '../pages/login/Login'
 import { createEventRoute } from './createEventRoute/createEventRoute'
 import { CreateEvent } from '../pages/createEvent/CreateEvent'
 import { eventRoute } from './eventRoute/eventRoute'
@@ -13,6 +12,7 @@ import { FavoritesWrapper } from './favoritesRoute/FavoritesWrapper'
 import { LogoutWrapper } from './logoutRoute/LogoutWrapper'
 import { EventWrapper } from './eventRoute/EventWrapper'
 import { MainWrapper } from '../pages/main/MainWrapper'
+import { LoginWrapper } from '../pages/login/LoginWrapper'
 
 const routes: RouteObject[] = [
   {
@@ -33,11 +33,7 @@ const routes: RouteObject[] = [
   },
   {
     path: loginRoute().getPath(),
-    element: (
-      <div>
-        <Login />
-      </div>
-    )
+    element: <LoginWrapper />
   },
   {
     path: createEventRoute().getPath(),

@@ -94,8 +94,7 @@
 
 .createEventLink {
     text-decoration: none;
-    background: linear-gradient(to right, transparent, transparent),
-    linear-gradient(to right, hsl(50, 75%, 55%), hsl(135, 35%, 55%), hsl(155, 35%, 60%));
+    background: linear-gradient(to right, transparent, transparent), linear-gradient(to right, hsl(50, 75%, 55%), hsl(135, 35%, 55%), hsl(155, 35%, 60%));
     background-size: 100% 3px, 0 3px;
     background-position: 100% 100%, 0 100%;
     background-repeat: no-repeat;

@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);
 
+.page {
+    display: flex;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -9,10 +13,6 @@
     width: 340px;
     padding-bottom: 24px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-html, body {
-    height: 100%;
 }
 
 .btns {
@@ -38,14 +38,15 @@ html, body {
     padding: 0;
 }
 
-    .btn:hover, .btn:focus {
-        transform: translateY(-6px);
-        color: white;
-        box-shadow: 4px 7px 4px rgba(234, 124, 6, 0.5);
-    }
+.btn:hover,
+.btn:focus {
+    transform: translateY(-6px);
+    color: white;
+    box-shadow: 4px 7px 4px rgba(234, 124, 6, 0.5);
+}
 
 h4 {
-    margin-top: 30px;
+    margin-top: 60px;
     font: bold 5.5vw/0 'Signika', sans-serif;
     user-select: none;
 }
@@ -55,7 +56,7 @@ h4 span {
 }
 
 @keyframes float {
-    0%,100% {
+    0%, 100% {
         transform: none;
     }
 
@@ -77,7 +78,7 @@ body:hover span {
 }
 
 @keyframes bounce {
-    0%,100% {
+    0%, 100% {
         transform: translate(0);
     }
 

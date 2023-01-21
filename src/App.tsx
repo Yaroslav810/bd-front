@@ -31,7 +31,7 @@ function Content() {
     <>
       {loaded
         ? <ContentImpl />
-        : <Preloader />}
+        : <div className={styles.preloader}><Preloader /></div>}
     </>
   )
 }

@@ -1,9 +1,8 @@
-import { CircularProgress } from '@mui/material'
 import EntryField from '../../components/entryField/EntryField'
 import { Button } from '../../components/button/Button'
 import styles from './Login.module.css'
 
-function Login() {
+function LoginContent() {
     return <div className={styles.content}>
         <h4>
             <span className={styles.welcome}>w</span>
@@ -32,8 +31,13 @@ function Login() {
                 <p>Login</p>
             </Button>
         </div>
-        
     </div>
+}
+
+function Login() {
+  return <div className={styles.page}>
+    <LoginContent />
+  </div>
 }
 
 export {
