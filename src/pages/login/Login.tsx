@@ -4,7 +4,7 @@ import styles from './Login.module.css'
 
 function LoginContent() {
   return <div className={styles.content}>
-    <h4>
+    <h4 className={styles.text}>
       <span className={styles.welcome}>w</span>
       <span className={styles.welcome}>e</span>
       <span className={styles.welcome}>l</span>

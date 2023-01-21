@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);
 
 .page {
-    display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .content {
@@ -45,13 +46,13 @@
     box-shadow: 4px 7px 4px rgba(234, 124, 6, 0.5);
 }
 
-h4 {
+.text {
     margin-top: 60px;
     font: bold 5.5vw/0 'Signika', sans-serif;
     user-select: none;
 }
 
-h4 span {
+.text span {
     display: inline-block;
 }
 
@@ -69,7 +70,7 @@ h4 span {
     }
 }
 
-body:hover span {
+.page:hover span {
     animation: bounce .6s;
 }
 
@@ -91,47 +92,47 @@ body:hover span {
     }
 }
 
-span:nth-child(4n) {
+.text span:nth-child(4n) {
     color: hsl(50, 75%, 55%);
     text-shadow: 1px 1px hsl(50, 75%, 45%), 2px 2px hsl(50, 45%, 45%), 3px 3px hsl(50, 45%, 45%), 4px 4px hsl(50, 75%, 45%);
 }
 
-span:nth-child(4n-1) {
+.text span:nth-child(4n-1) {
     color: hsl(135, 35%, 55%);
     text-shadow: 1px 1px hsl(135, 35%, 45%), 2px 2px hsl(135, 35%, 45%), 3px 3px hsl(135, 35%, 45%), 4px 4px hsl(135, 35%, 45%);
 }
 
-span:nth-child(4n-2) {
+.text span:nth-child(4n-2) {
     color: hsl(155, 35%, 60%);
     text-shadow: 1px 1px hsl(155, 25%, 50%), 2px 2px hsl(155, 25%, 50%), 3px 3px hsl(155, 25%, 50%), 4px 4px hsl(140, 25%, 50%);
 }
 
-span:nth-child(4n-3) {
+.text span:nth-child(4n-3) {
     color: hsl(30, 65%, 60%);
     text-shadow: 1px 1px hsl(30, 45%, 50%), 2px 2px hsl(30, 45%, 50%), 3px 3px hsl(30, 45%, 50%), 4px 4px hsl(30, 45%, 50%);
 }
 
-h4 span:nth-child(2) {
+.text span:nth-child(2) {
     animation-delay: .05s;
 }
 
-h4 span:nth-child(3) {
+.text span:nth-child(3) {
     animation-delay: .1s;
 }
 
-h4 span:nth-child(4) {
+.text span:nth-child(4) {
     animation-delay: .15s;
 }
 
-h4 span:nth-child(5) {
+.text span:nth-child(5) {
     animation-delay: .2s;
 }
 
-h4 span:nth-child(6) {
+.text span:nth-child(6) {
     animation-delay: .25s;
 }
 
-h4 span:nth-child(7) {
+.text span:nth-child(7) {
     animation-delay: .3s;
 }
 
