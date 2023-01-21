@@ -5,6 +5,7 @@ import { mainStates } from './model/states'
 import { Preloader } from '../../common/preloader/Preloader'
 import styles from './Main.module.css'
 import { useAtom } from '@reatom/npm-react'
+import { Avatar, IconButton } from '@mui/material'
 
 // TODO: �������� �������������� ����������� ���������� "���������" �����������
 const countOfFavoritesEvents = 0
@@ -35,13 +36,13 @@ function Main() {
   //   <div className={styles.content}>
   //     <div className={styles.leftContent}>
   //       <IconButton sx={{ p: 2 }} className={styles.iconButton}>
-  //         <Avatar className={styles.icon} alt={user ? user.firstName : ''} src="/static/images/avatar/2.jpg" />
+  //         <Avatar className={styles.icon} alt={user !== null ? user.firstName : ''} src="/static/images/avatar/2.jpg" />
   //       </IconButton>
   //       <p className={styles.userInfo}>
-  //         {user && user.firstName}
+  //         {user !== null ? user.firstName : ''}
   //       </p>
   //       <p className={styles.userInfo}>
-  //         {user && user.login}
+  //         {user !== null ? user.login : ''}
   //       </p>
   //       <div className={styles.createEvent}>
   //         <a href='/createEvent' className={styles.createEventLink} > ������� ����� ����������� </a>
