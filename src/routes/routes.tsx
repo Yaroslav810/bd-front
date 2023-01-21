@@ -1,3 +1,4 @@
+import React from 'react'
 import { RouteObject } from 'react-router'
 import { Favorites } from '../pages/favorites/Favorites'
 import { Main } from '../pages/main/Main'
@@ -13,6 +14,11 @@ import { Logout } from '../pages/logout/Logout'
 import { Login } from '../pages/login/Login'
 import { createEventRoute } from './createEventRoute/createEventRoute'
 import { CreateEvent } from '../pages/createEvent/CreateEvent'
+import { eventRoute } from './eventRoute/eventRoute'
+import { MainWrapper } from '../pages/main/MainWrapper'
+import { FavoritesWrapper } from './favoritesRoute/FavoritesWrapper'
+import { LogoutWrapper } from './logoutRoute/LogoutWrapper'
+import { EventWrapper } from './eventRoute/EventWrapper'
 
 const routes: RouteObject[] = [
   {
@@ -27,15 +33,16 @@ const routes: RouteObject[] = [
   },
   {
     path: favoritesRoute().getPath(),
-    element: (
-      <div>
-        <Sidebar />
-        <Favorites/>
-      </div>
-    )
+    element: <FavoritesWrapper />
   },
   {
     path: logoutRoute().getPath(),
+    element: <LogoutWrapper />
+  },
+  {
+    path: eventRoute().getPath(),
+    element: <EventWrapper />
+  }
     element: (
       <div>
             <Logout />

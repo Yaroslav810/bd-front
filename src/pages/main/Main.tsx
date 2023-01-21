@@ -6,13 +6,35 @@ import { user } from '../../common/sidebar/Sidebar'
 //const createEvent = useCreateEventRoute()
 
 
-//TODO: РґРѕР±Р°РІРёС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РїРѕРґРіСЂСѓР¶РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° "Р»Р°Р№РєРЅСѓС‚С‹С…" РјРµСЂРѕРїСЂРёСЏС‚РёР№
+//TODO: добавить автоматическое подгружение количества "лайкнутых" мероприятий
 const countOfFavoritesEvents = 0;
-//TODO: РґРѕР±Р°РІРёС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РїРѕРґРіСЂСѓР¶РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° РїРѕСЃРµС‰РµРЅРЅС‹С… РјРµСЂРѕРїСЂРёСЏС‚РёР№(С‚РµС…, РіРґРµ С‡РµР» РїРµСЂРµС‰РµР» РїРѕ СЃСЃС‹Р»РєРµ "Р·Р°РїРёСЃР°С‚СЊСЃСЏ")
+//TODO: добавить автоматическое подгружение количества посещенных мероприятий(тех, где чел перещел по ссылке "записаться")
 const countOfVisitedEvents = 0;
-//TODO: РґРѕР±Р°РІРёС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РїРѕРґРіСЂСѓР¶РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СЃРѕР·РґР°РЅРЅС‹С… РјРµСЂРѕРїСЂРёСЏС‚РёР№
+//TODO: добавить автоматическое подгружение количества созданных мероприятий
 const countOfCreatedEvents = 0;
+import { Preloader } from '../../common/preloader/Preloader'
+import styles from './Main.module.css'
+import { useAtom } from '@reatom/npm-react'
+import { mainStates } from './model/states'
+import { ErrorContent } from '../../common/error/ErrorContent'
+import { List } from './components/List'
+
 function Main() {
+  const [data] = useAtom(mainStates.events)
+  const [isLoading] = useAtom(mainStates.loaded)
+
+  let content
+  if (!(isLoading === 0)) {
+    content = <Preloader />
+  } else {
+    content = (data != null)
+      ? <List events={data}/>
+      : <ErrorContent />
+  }
+
+  return <div className={styles.main}>
+    {content}
+  </div>
     return <div className={styles.container}>
         <div className={styles.content}>
             <div className={styles.leftContent}>
@@ -26,23 +48,23 @@ function Main() {
                     {user.login}
                 </p>
                 <div className={styles.createEvent}>
-                    <a href='/createEvent' className={styles.createEventLink} > РЎРѕР·РґР°С‚СЊ РЅРѕРІРѕРµ РјРµСЂРѕРїСЂРёСЏС‚РёРµ </a>
+                    <a href='/createEvent' className={styles.createEventLink} > Создать новое мероприятие </a>
                 </div>
             </div>
             <div className={styles.rightContent}>
                 <div className={ styles.infoTop}>
                     <div className={styles.info}>
-                        <p>РљРѕР»РёС‡РµСЃС‚РІРѕ &#x1f497; РјРµСЂРѕРїСЂРёСЏС‚РёР№</p>
+                        <p>Количество &#x1f497; мероприятий</p>
                         <p>{countOfFavoritesEvents}</p>
                     </div>
                     <div className={styles.info}>
-                        <p>РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕСЃРµС‰РµРЅРЅС‹С… РјРµСЂРѕРїСЂСЏС‚РёР№</p>
+                        <p>Количество посещенных меропрятий</p>
                         <p>{countOfVisitedEvents}</p>
                     </div>
                 </div>
                 <div className={styles.infoBottom}>
                     <div className={styles.info}>
-                        <p>РљРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕР·РґР°РЅРЅС‹С… РјРµСЂРѕРїСЂСЏС‚РёР№</p>
+                        <p>Количество созданных меропрятий</p>
                         <p>{countOfCreatedEvents}</p>
                     </div>
                 </div>

@@ -1,7 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);
 
 .content {
+.main {
+    padding: 50px;
     display: flex;
+    justify-content: center;
 }
 
 .leftContent, .rightContent {
