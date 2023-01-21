@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { CreateEvent } from '../pages/createEvent/CreateEvent'
 import { createEventRoute } from './createEventRoute/createEventRoute'
+import { CreateEventWrapper } from '../pages/createEvent/CreateEventWrapper'
 import { eventRoute } from './eventRoute/eventRoute'
 import { EventWrapper } from './eventRoute/EventWrapper'
 import { favoritesRoute } from './favoritesRoute/favoritesRoute'
@@ -12,7 +12,6 @@ import { LogoutWrapper } from './logoutRoute/LogoutWrapper'
 import { mainRoute } from './mainRoute/mainRoute'
 import { MainWrapper } from '../pages/main/MainWrapper'
 import { RouteObject } from 'react-router'
-import { Sidebar } from '../common/sidebar/Sidebar'
 
 const routes: RouteObject[] = [
   {
@@ -37,12 +36,7 @@ const routes: RouteObject[] = [
   },
   {
     path: createEventRoute().getPath(),
-    element: (
-      <div>
-        <Sidebar />
-        <CreateEvent />
-      </div>
-    )
+    element: <CreateEventWrapper />
   }
 ]
 

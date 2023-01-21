@@ -1,17 +1,10 @@
-import * as React from 'react'
 import { useState } from 'react'
 import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 import { getUser } from '../../model/states'
-import {authentication, logout } from '../../api/user/user'
-import {AppBar, Avatar, Box, Button, Container, Divider, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography} from '@mui/material'
+import { authentication, logout } from '../../api/user/user'
+import { AppBar, Avatar, Box, Button, Container, Divider, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
 import AttractionsIcon from '@mui/icons-material/Attractions'
-
-const HEIGHT_SIDEBAR = 60;
-const user = {
-    name: 'ВМаслов ВМирон',
-    login: 'vmaslov@gmail.com'
-}
 
 function Sidebar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
@@ -43,40 +36,40 @@ function Sidebar() {
       <Toolbar disableGutters>
         <AttractionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
         <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#ffffff',
-              textDecoration: 'none'
-            }}
+          variant="h6"
+          noWrap
+          component="a"
+          href="/"
+          sx={{
+            mr: 2,
+            display: { xs: 'none', md: 'flex' },
+            flexGrow: 1,
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: '#ffffff',
+            textDecoration: 'none'
+          }}
         >
           PATHWAY
         </Typography>
 
         <AttractionsIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
         <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}
+          variant="h5"
+          noWrap
+          component="a"
+          href=""
+          sx={{
+            mr: 2,
+            display: { xs: 'flex', md: 'none' },
+            flexGrow: 1,
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: 'inherit',
+            textDecoration: 'none'
+          }}
         >
           PATHWAY
         </Typography>
@@ -136,7 +129,5 @@ function Sidebar() {
 }
 
 export {
-    HEIGHT_SIDEBAR,
-    Sidebar,
-    user,
+  Sidebar
 }
