@@ -1,5 +1,5 @@
-import { GetEventsEventDto } from '../../../api/events/types'
 import { Event } from './types'
+import { GetEventsEventDto } from '../../../api/events/types'
 
 function mapGetEventsEventDtoToEvent(eventDto: GetEventsEventDto): Event {
   return {

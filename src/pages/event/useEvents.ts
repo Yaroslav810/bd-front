@@ -1,7 +1,7 @@
+import { actions, state } from './model/store'
+import { useAction, useAtom } from '@reatom/npm-react'
 import { useCallback, useEffect, useState } from 'react'
 import { getEvent } from '../../api/events/events'
-import { useAction, useAtom } from '@reatom/npm-react'
-import { actions, state } from './model/store'
 
 function useEvents(id: string) {
   const [event] = useAtom(state.event)

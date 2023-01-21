@@ -30,8 +30,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "run-eslint": "eslint \"src/*/*.ts\" --ignore-pattern node_modules/",
-    "run-eslint-fix": "eslint \"src/*/*.ts\" --ignore-pattern node_modules/ --fix"
+    "run-eslint": "eslint \"src/*/*.ts*\" --ignore-pattern node_modules/",
+    "run-eslint-fix": "eslint \"src/*/*.ts*\" --ignore-pattern node_modules/ --fix"
   },
   "eslintConfig": {
     "extends": [

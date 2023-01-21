@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getEvents } from '../../api/events/events'
 import { Event } from './model/types'
+import { getEvents } from '../../api/events/events'
 
 function useEvents() {
   const [events, setEvents] = useState<Event[] | null>([])

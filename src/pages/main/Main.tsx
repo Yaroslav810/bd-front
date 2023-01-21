@@ -1,10 +1,10 @@
-import styles from './Main.module.css'
-import { Preloader } from '../../common/preloader/Preloader'
-import { useAtom } from '@reatom/npm-react'
-import { mainStates } from './model/states'
 import { ErrorContent } from '../../common/error/ErrorContent'
-import { List } from './components/List'
 import { getUser } from '../../model/states'
+import { List } from './components/List'
+import { mainStates } from './model/states'
+import { Preloader } from '../../common/preloader/Preloader'
+import styles from './Main.module.css'
+import { useAtom } from '@reatom/npm-react'
 
 // TODO: �������� �������������� ����������� ���������� "���������" �����������
 const countOfFavoritesEvents = 0

@@ -1,6 +1,5 @@
-import React from 'react'
-import { Sidebar } from '../../common/sidebar/Sidebar'
 import { Main } from './Main'
+import { Sidebar } from '../../common/sidebar/Sidebar'
 
 function MainWrapper() {
   return <div>
