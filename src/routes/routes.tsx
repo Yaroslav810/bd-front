@@ -9,9 +9,24 @@ import { loginRoute } from './loginRoute/loginRoute'
 import { LoginWrapper } from '../pages/login/LoginWrapper'
 import { logoutRoute } from './logoutRoute/logoutRoute'
 import { LogoutWrapper } from './logoutRoute/LogoutWrapper'
-import { mainRoute } from './mainRoute/mainRoute'
+import { mainRoute, useMainRoute } from './mainRoute/mainRoute'
 import { MainWrapper } from '../pages/main/MainWrapper'
+import { ReactElement, useEffect } from 'react'
 import { RouteObject } from 'react-router'
+import { getUser } from '../model/states'
+
+function ProtectedLayout({ component }: { component: ReactElement }) {
+  const user = getUser()
+  const main = useMainRoute()
+
+  useEffect(() => {
+    if (user === null) {
+      main.goTo()
+    }
+  }, [user, main])
+
+  return <>{component}</>
+}
 
 const routes: RouteObject[] = [
   {
@@ -20,11 +35,11 @@ const routes: RouteObject[] = [
   },
   {
     path: favoritesRoute().getPath(),
-    element: <FavoritesWrapper />
+    element: <ProtectedLayout component={<FavoritesWrapper />} />
   },
   {
     path: logoutRoute().getPath(),
-    element: <LogoutWrapper />
+    element: <ProtectedLayout component={<LogoutWrapper />} />
   },
   {
     path: eventRoute().getPath(),
@@ -36,7 +51,7 @@ const routes: RouteObject[] = [
   },
   {
     path: createEventRoute().getPath(),
-    element: <CreateEventWrapper />
+    element: <ProtectedLayout component={<CreateEventWrapper />} />
   }
 ]
 
