@@ -1,59 +1,68 @@
+.container {
+    max-width: 1536px;
+    margin: 0 auto;
+}
+
 .content {
-    border-radius: 8.8px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 40px;
+    border-radius: 12px;
     box-shadow: 0 15px 40px rgb(0 0 0 / 20%);
-    width: 95%;
-    height: 400px;
     margin: 20px 30px;
     background: #00ffff url(https://bogatyr.club/uploads/posts/2021-11/thumbs/1636931592_2-bogatyr-club-p-fon-puziri-2.jpg) no-repeat;
+    background-size: cover;
+    overflow: hidden;
 }
 
-.content::before {
-    background-color:rgba(0, 0, 0, .5);
+.content:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
 }
 
-.rightContent {
-    float: left;
-    //text-align: left;
-}
-
+.rightContent,
 .leftContent {
-    text-align: right;
-}
-
-
-.rightContent form input:first-child {
-    width:100px;
-    height:50px;
-}
-
-.rightContent form input:nth-child(2) {
-    width: 200px;
-    height: 100px;
-}
-
-.rightContent form input {
-    margin: 10px 0 10px 10px;
-    min-height:40px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
     border-radius: 10px;
-}
-
-.leftContent form input:nth-child(2) {
-    //margin: 10px 0 10px 10px;
-    //display: block;
-}
-
-input {
     background: rgba(250, 250, 250, 40%);
-    border: none;
-    border-radius:10px;
-    min-width: 160px;
-    color: black;
-    margin-right: 10px;
+    flex-basis: 40%;
+    z-index: 1;
 }
 
-.content {
-    padding-top: 10px;
+.content form input,
+.content form textarea {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    min-width: 160px;
+    min-height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    background: rgba(250, 250, 250, 40%);
+    font: 18px/1.4 'Helvetica', Arial, Lucida Grande, sans-serif;
+}
+
+.content form textarea {
+    resize: none;
+    flex: 1;
+    outline: none;
+}
+
+.content form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .adressIn {
@@ -62,57 +71,31 @@ input {
 
 .adressIn p, .adressOut p {
     margin-right: 40px;
-    //margin-bottom: 10px;
 }
+
 input:focus {
     border: none;
-    outline:none;
-
+    outline: none;
 }
 
 .leftContent input {
     padding: 2px 3px;
 }
 
-.btnDownload, .btnSave {
-    text-align: center;
-}
-
 .btnSave {
-    background: rgba(250, 250, 250, 40%);
-    border-radius: 8.8px;
-    height: 30px;
-    margin-left: 10px;
-    width: 100px;
-    
+    margin: 20px 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.btnSave a{
-     text-decoration: none;
-    background: linear-gradient(to right, transparent, transparent), 
-        linear-gradient(to right, hsl(50, 75%, 55%), hsl(135, 35%, 55%), hsl(155, 35%, 60%));
-    background-size: 100% 3px, 0 3px;
-    background-position: 100% 100%, 0 100%;
-    background-repeat:no-repeat;
-    transition: background-size 400ms;
-    color: black;
+.btnDownload {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 30px;
 }
 
-.btnSave:hover .btnSave a{
-    background-size: 0 3px, 100% 3px;
-}
-
-.btnDownload a{
-     text-decoration: none;
-    background: linear-gradient(to right, transparent, transparent), 
-        linear-gradient(to right, hsl(50, 75%, 55%), hsl(135, 35%, 55%), hsl(155, 35%, 60%));
-    background-size: 100% 3px, 0 3px;
-    background-position: 100% 100%, 0 100%;
-    background-repeat:no-repeat;
-    transition: background-size 400ms;
-    color: black;
-}
-
-.btnDownload:hover .btnDownload a{
-    background-size: 0 3px, 100% 3px;
+.downloadField {
+    display: none;
 }

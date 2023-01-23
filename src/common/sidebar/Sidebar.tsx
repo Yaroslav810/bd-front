@@ -1,10 +1,9 @@
-import * as React from 'react'
 import { useState } from 'react'
 import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 import { getUser } from '../../model/states'
-import { authentication, logout } from '../../api/user/user'
-import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
+import { authentication } from '../../api/user/user'
+// import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
 import { useLoginRoute } from '../../routes/loginRoute/loginRoute'
 import { AppBar, Avatar, Box, Button, Container, Divider, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
 import AttractionsIcon from '@mui/icons-material/Attractions'
@@ -13,7 +12,7 @@ function Sidebar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
   const main = useMainRoute()
   const login = useLoginRoute()
-  const createEvent = useCreateEventRoute()
+  // const createEvent = useCreateEventRoute()
   const favorites = useFavoritesRoute()
 
   const user = getUser()
@@ -56,6 +55,7 @@ function Sidebar() {
         >
           PATHWAY
         </Typography>
+
         <AttractionsIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
         <Typography
           variant="h5"
@@ -131,5 +131,5 @@ function Sidebar() {
 }
 
 export {
-    Sidebar,
+  Sidebar
 }

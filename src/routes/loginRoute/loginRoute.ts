@@ -16,6 +16,6 @@ function useLoginRoute() {
 }
 
 export {
-    loginRoute,
-    useLoginRoute,
+  loginRoute,
+  useLoginRoute
 }

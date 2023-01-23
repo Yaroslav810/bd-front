@@ -1,3 +1,5 @@
+import { Button, ImageListItem } from '@mui/material'
+import { FormEvent, useRef, useState } from 'react'
 import styles from './CreateEvent.module.css'
 
 // TODO: ���������� input �� Input, � ��������� �������� placeholder
@@ -5,9 +7,56 @@ import styles from './CreateEvent.module.css'
 // ��������� ���� ���� �� �������
 
 function CreateEvent() {
+  const [title, setTitle] = useState('')
+  const [image, setImage] = useState<string | null>(null)
+  const fileIField = useRef<HTMLInputElement>(null)
+
+  function onLoadImage() {
+    if (fileIField.current !== null) {
+      if (image === null) {
+        fileIField.current.click()
+      } else {
+        setImage(null)
+        fileIField.current.value = ''
+      }
+    }
+  }
+
+  function onChangeImage(event: FormEvent<HTMLInputElement>) {
+    if (event.currentTarget.files === null || event.currentTarget.files.length === 0) {
+      return
+    }
+
+    const file: File = event.currentTarget.files[0]
+    const promise = new Promise(resolve => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+    })
+
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
+    void promise.then(data => setImage(data ? data.toString() : ''))
+  }
+
   return <div className={styles.container}>
+    <div className={styles.btnSave}>
+      <Button
+        variant="contained"
+        size="large"
+        onClick={() => {
+          console.log(title)
+        }}
+      >
+        Сохранить
+      </Button>
+    </div>
+
     <div className={styles.btnDownload}>
-      <a href='/'>Download background</a>
+      {image === null
+        ? <Button onClick={onLoadImage}>Загрузить изображение</Button>
+        : <Button onClick={onLoadImage}>Удалить изображение</Button>}
+      <input ref={fileIField} type="file" className={styles.downloadField} onChange={onChangeImage} />
+      {image && <ImageListItem sx={{ width: 600, height: 300 }}><img src={image} alt="image"/></ImageListItem>}
     </div>
 
     <div className={styles.content}>
@@ -16,14 +65,12 @@ function CreateEvent() {
           <input
             type="text"
             placeholder="Title"
-
-          ></input>
-          <input type="text" placeholder="Descripsion"></input>
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+          />
+          <textarea placeholder="Description"></textarea>
           <input type="text" placeholder="Link to general chat"></input>
         </form>
-        <div className={styles.btnSave}>
-          <a href='/'>Save</a>
-        </div>
       </div>
 
       <div className={styles.leftContent}>
@@ -131,7 +178,6 @@ function CreateEvent() {
         </form>
       </div>
     </div>
-
   </div>
 }
 

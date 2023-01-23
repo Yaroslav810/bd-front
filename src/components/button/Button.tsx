@@ -1,4 +1,4 @@
-/*import {
+/* import {
     ChangeEvent,
     CSSProperties,
     KeyboardEvent,
@@ -21,59 +21,51 @@ return (
   </div>
 )}
 
-
 export {
     Button
 }
 */
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
-
 import './Button.module.css'
 
-
-
-type ButtonProps = {
-    children: React.ReactNode,
-    onClick(): void,
-    className?: string,
-    disabled?: boolean,
-    active?: boolean,
-};
-
-const Button: React.FC<ButtonProps> = ({
-    children, onClick, className, disabled, active
-
-}) => {
-
-    const classes = classNames(
-        'btn',
-        className,
-        { active },
-    )
-
-    return (
-        <button
-            className={classes}
-            disabled={disabled}
-            onClick={onClick}
-        >
-            {children}
-        </button>
-    );
-};
-
-
-
-type DefaultProps = {
-    children: 'Default button',
-    className: '',
-    disabled: false,
-    active: false,
+interface ButtonProps {
+  children: React.ReactNode
+  onClick: () => void
+  className?: string
+  disabled?: boolean
+  active?: boolean
 }
 
+const Button: React.FC<ButtonProps> = ({
+  children, onClick, className, disabled, active
+
+}) => {
+  const classes = classNames(
+    'btn',
+    className,
+    { active }
+  )
+
+  return (
+    <button
+      className={classes}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  )
+}
+
+// interface DefaultProps {
+//   children: 'Default button'
+//   className: ''
+//   disabled: false
+//   active: false
+// }
+
 export {
-    Button,
+  Button
 }

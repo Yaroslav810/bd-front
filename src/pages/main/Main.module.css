@@ -4,6 +4,7 @@
 .main {
     padding: 50px;
     display: flex;
+    justify-content: center;
 }
 
 .leftContent, .rightContent {

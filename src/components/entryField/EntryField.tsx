@@ -11,7 +11,7 @@ interface Props {
   id?: string
   value?: string
   style?: CSSProperties
-  className?: string,
+  className?: string
   label?: string
   onChange?: (value: string) => void
   onInput?: (value: string) => void

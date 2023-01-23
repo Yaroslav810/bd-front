@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router'
 
-const path = '/createEvent'
+const path = '/create-event'
 
 function createEventRoute() {
   return {
