@@ -3,23 +3,9 @@ import { getUser } from '../../model/states'
 import { List } from './components/List'
 import { mainStates } from './model/states'
 import { Avatar, IconButton } from '@mui/material'
-//import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
-//const createEvent = useCreateEventRoute()
-import { getUser } from '../../model/states'
-
-
-
-
-//TODO: добавить автоматическое подгружение количества "лайкнутых" мероприятий
-const countOfFavoritesEvents = 0;
-//TODO: добавить автоматическое подгружение количества посещенных мероприятий(тех, где чел перещел по ссылке "записаться")
-const countOfVisitedEvents = 0;
-//TODO: добавить автоматическое подгружение количества созданных мероприятий
-const countOfCreatedEvents = 0;
 import { Preloader } from '../../common/preloader/Preloader'
 import styles from './Main.module.css'
 import { useAtom } from '@reatom/npm-react'
-import { Avatar, IconButton } from '@mui/material'
 
 // TODO: �������� �������������� ����������� ���������� "���������" �����������
 const countOfFavoritesEvents = 0
