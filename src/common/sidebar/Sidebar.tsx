@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu'
 import Container from '@mui/material/Container'
 import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
-import MenuItem from '@mui/material/MenuItem'
+//import MenuItem from '@mui/material/MenuItem'
 import AttractionsIcon from '@mui/icons-material/Attractions'
 import { useState } from 'react'
 import { Button, Divider, MenuItem } from '@mui/material'
@@ -17,25 +17,15 @@ import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 import { getUser } from '../../model/states'
 import { authentication, logout } from '../../api/user/user'
 import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
+import { useLoginRoute } from '../../routes/loginRoute/loginRoute'
 
-const HEIGHT_SIDEBAR = 60;
-const user = {
-    name: 'ВМаслов ВМирон',
-    login: 'vmaslov@gmail.com'
-}
-
-function Sidebar() {
-    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
-    const main = useMainRoute()
-    const favorites = useFavoritesRoute()
-    //const logout = useLogoutRoute()
-    const login = useLoginRoute()
-    const createEvent = useCreateEventRoute()
 
     
 function Sidebar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
-  const main = useMainRoute()
+    const main = useMainRoute()
+    const login = useLoginRoute()
+    const createEvent = useCreateEventRoute()
   const favorites = useFavoritesRoute()
 
   const user = getUser()
@@ -52,9 +42,7 @@ function Sidebar() {
     null,
     {
       title: 'Выйти',
-      onClick: () => {
-        void logout().then(main.goTo)
-      }
+      onClick: login.goTo
     }
   ]
 
@@ -156,7 +144,5 @@ function Sidebar() {
 }
 
 export {
-    HEIGHT_SIDEBAR,
     Sidebar,
-    user,
 }

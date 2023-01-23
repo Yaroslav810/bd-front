@@ -1,9 +1,9 @@
 import { Avatar, IconButton } from '@mui/material'
-import styles from './Main.module.css'
-import { user } from '../../common/sidebar/Sidebar'
 //import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
-
 //const createEvent = useCreateEventRoute()
+import { getUser } from '../../model/states'
+
+
 
 
 //TODO: добавить автоматическое подгружение количества "лайкнутых" мероприятий
@@ -19,6 +19,8 @@ import { mainStates } from './model/states'
 import { ErrorContent } from '../../common/error/ErrorContent'
 import { List } from './components/List'
 
+const user = getUser()
+
 function Main() {
   const [data] = useAtom(mainStates.events)
   const [isLoading] = useAtom(mainStates.loaded)
@@ -32,20 +34,20 @@ function Main() {
       : <ErrorContent />
   }
 
-  return <div className={styles.main}>
+  /*return <div className={styles.main}>
     {content}
-  </div>
+  </div>*/
     return <div className={styles.container}>
         <div className={styles.content}>
             <div className={styles.leftContent}>
                 <IconButton sx={{ p: 2 }} className={styles.iconButton}>
-                    <Avatar className={styles.icon} alt={user.name} src="/static/images/avatar/2.jpg" />
+                    <Avatar className={styles.icon} src="/static/images/avatar/2.jpg" />
                 </IconButton>
                 <p className={styles.userInfo}>
-                    {user.name}
+                    User
                 </p>
                 <p className={styles.userInfo}>
-                    {user.login}
+                    User
                 </p>
                 <div className={styles.createEvent}>
                     <a href='/createEvent' className={styles.createEventLink} > Создать новое мероприятие </a>
@@ -70,7 +72,7 @@ function Main() {
                 </div>
             </div>
         </div>
-        
+        {content}
     </div>
     
 }

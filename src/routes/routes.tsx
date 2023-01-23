@@ -1,4 +1,3 @@
-import React from 'react'
 import { RouteObject } from 'react-router'
 import { Favorites } from '../pages/favorites/Favorites'
 import { Main } from '../pages/main/Main'
@@ -42,31 +41,20 @@ const routes: RouteObject[] = [
   {
     path: eventRoute().getPath(),
     element: <EventWrapper />
+  },
+  {
+      path: loginRoute().getPath(),
+      element: <Login />
+  },
+  {
+      path: createEventRoute().getPath(),
+      element: (
+          <div>
+              <Sidebar />
+              <CreateEvent />
+          </div>
+      )
   }
-    element: (
-      <div>
-            <Logout />
-           
-      </div>
-    )
-    },
-    {
-    path: loginRoute().getPath(),
-    element: (
-        <div>
-            <Login />
-        </div>
-        )
-    },
-    {
-        path: createEventRoute().getPath(),
-        element: (
-            <div>
-                <Sidebar />
-                <CreateEvent />
-            </div>
-        )
-    }
 ]
 
 function getRouter() {
