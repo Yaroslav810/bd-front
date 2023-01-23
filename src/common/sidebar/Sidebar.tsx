@@ -1,15 +1,4 @@
 import * as React from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Menu from '@mui/material/Menu'
-import Container from '@mui/material/Container'
-import Avatar from '@mui/material/Avatar'
-import Tooltip from '@mui/material/Tooltip'
-//import MenuItem from '@mui/material/MenuItem'
-import AttractionsIcon from '@mui/icons-material/Attractions'
 import { useState } from 'react'
 import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
@@ -22,9 +11,9 @@ import AttractionsIcon from '@mui/icons-material/Attractions'
 
 function Sidebar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
-    const main = useMainRoute()
-    const login = useLoginRoute()
-    const createEvent = useCreateEventRoute()
+  const main = useMainRoute()
+  const login = useLoginRoute()
+  const createEvent = useCreateEventRoute()
   const favorites = useFavoritesRoute()
 
   const user = getUser()
@@ -67,7 +56,6 @@ function Sidebar() {
         >
           PATHWAY
         </Typography>
-
         <AttractionsIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
         <Typography
           variant="h5"

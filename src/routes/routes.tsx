@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router'
 import { Favorites } from '../pages/favorites/Favorites'
 import { Main } from '../pages/main/Main'
-
+import { Login } from '../pages/login/Login'
 import { createBrowserRouter } from 'react-router-dom'
 import { createEventRoute } from './createEventRoute/createEventRoute'
 import { CreateEventWrapper } from '../pages/createEvent/CreateEventWrapper'
@@ -16,8 +16,9 @@ import { LogoutWrapper } from './logoutRoute/LogoutWrapper'
 import { mainRoute, useMainRoute } from './mainRoute/mainRoute'
 import { MainWrapper } from '../pages/main/MainWrapper'
 import { ReactElement, useEffect } from 'react'
-import { RouteObject } from 'react-router'
 import { getUser } from '../model/states'
+import { Sidebar } from '../common/sidebar/Sidebar'
+import { CreateEvent } from '../pages/createEvent/CreateEvent'
 
 function ProtectedLayout({ component }: { component: ReactElement }) {
   const user = getUser()
