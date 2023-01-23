@@ -1,3 +1,7 @@
+import { ErrorContent } from '../../common/error/ErrorContent'
+import { getUser } from '../../model/states'
+import { List } from './components/List'
+import { mainStates } from './model/states'
 import { Avatar, IconButton } from '@mui/material'
 //import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
 //const createEvent = useCreateEventRoute()
@@ -6,27 +10,32 @@ import { getUser } from '../../model/states'
 
 
 
-//TODO: добавить автоматическое подгружение количества "лайкнутых" мероприятий
+//TODO: РґРѕР±Р°РІРёС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РїРѕРґРіСЂСѓР¶РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° "Р»Р°Р№РєРЅСѓС‚С‹С…" РјРµСЂРѕРїСЂРёСЏС‚РёР№
 const countOfFavoritesEvents = 0;
-//TODO: добавить автоматическое подгружение количества посещенных мероприятий(тех, где чел перещел по ссылке "записаться")
+//TODO: РґРѕР±Р°РІРёС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РїРѕРґРіСЂСѓР¶РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° РїРѕСЃРµС‰РµРЅРЅС‹С… РјРµСЂРѕРїСЂРёСЏС‚РёР№(С‚РµС…, РіРґРµ С‡РµР» РїРµСЂРµС‰РµР» РїРѕ СЃСЃС‹Р»РєРµ "Р·Р°РїРёСЃР°С‚СЊСЃСЏ")
 const countOfVisitedEvents = 0;
-//TODO: добавить автоматическое подгружение количества созданных мероприятий
+//TODO: РґРѕР±Р°РІРёС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РїРѕРґРіСЂСѓР¶РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СЃРѕР·РґР°РЅРЅС‹С… РјРµСЂРѕРїСЂРёСЏС‚РёР№
 const countOfCreatedEvents = 0;
 import { Preloader } from '../../common/preloader/Preloader'
 import styles from './Main.module.css'
 import { useAtom } from '@reatom/npm-react'
-import { mainStates } from './model/states'
-import { ErrorContent } from '../../common/error/ErrorContent'
-import { List } from './components/List'
+import { Avatar, IconButton } from '@mui/material'
 
-const user = getUser()
+// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+const countOfFavoritesEvents = 0
+// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
+const countOfVisitedEvents = 0
+// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+const countOfCreatedEvents = 0
 
 function Main() {
   const [data] = useAtom(mainStates.events)
   const [isLoading] = useAtom(mainStates.loaded)
 
+  const user = getUser()
+
   let content
-  if (!(isLoading === 0)) {
+  if (isLoading > 0) {
     content = <Preloader />
   } else {
     content = (data != null)
@@ -50,23 +59,23 @@ function Main() {
                     User
                 </p>
                 <div className={styles.createEvent}>
-                    <a href='/createEvent' className={styles.createEventLink} > Создать новое мероприятие </a>
+                    <a href='/createEvent' className={styles.createEventLink} > РЎРѕР·РґР°С‚СЊ РЅРѕРІРѕРµ РјРµСЂРѕРїСЂРёСЏС‚РёРµ </a>
                 </div>
             </div>
             <div className={styles.rightContent}>
                 <div className={ styles.infoTop}>
                     <div className={styles.info}>
-                        <p>Количество &#x1f497; мероприятий</p>
+                        <p>РљРѕР»РёС‡РµСЃС‚РІРѕ &#x1f497; РјРµСЂРѕРїСЂРёСЏС‚РёР№</p>
                         <p>{countOfFavoritesEvents}</p>
                     </div>
                     <div className={styles.info}>
-                        <p>Количество посещенных меропрятий</p>
+                        <p>РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕСЃРµС‰РµРЅРЅС‹С… РјРµСЂРѕРїСЂСЏС‚РёР№</p>
                         <p>{countOfVisitedEvents}</p>
                     </div>
                 </div>
                 <div className={styles.infoBottom}>
                     <div className={styles.info}>
-                        <p>Количество созданных меропрятий</p>
+                        <p>РљРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕР·РґР°РЅРЅС‹С… РјРµСЂРѕРїСЂСЏС‚РёР№</p>
                         <p>{countOfCreatedEvents}</p>
                     </div>
                 </div>

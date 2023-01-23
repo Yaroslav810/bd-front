@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { createCtx } from '@reatom/core'
-import { reatomContext } from '@reatom/npm-react'
-import { RouterProvider } from 'react-router-dom'
-import { getRouter } from './routes/routes'
-
-import styles from './App.module.css'
 import { getCurrentUser } from './api/user/user'
+import { getRouter } from './routes/routes'
 import { initUser } from './model/states'
 import { Preloader } from './common/preloader/Preloader'
+import { reatomContext } from '@reatom/npm-react'
+import { RouterProvider } from 'react-router-dom'
+import styles from './App.module.css'
 
 function ContentImpl() {
   return (
@@ -31,7 +30,7 @@ function Content() {
     <>
       {loaded
         ? <ContentImpl />
-        : <Preloader />}
+        : <div className={styles.preloader}><Preloader /></div>}
     </>
   )
 }

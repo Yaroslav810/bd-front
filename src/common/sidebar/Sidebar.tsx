@@ -11,16 +11,15 @@ import Tooltip from '@mui/material/Tooltip'
 //import MenuItem from '@mui/material/MenuItem'
 import AttractionsIcon from '@mui/icons-material/Attractions'
 import { useState } from 'react'
-import { Button, Divider, MenuItem } from '@mui/material'
 import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 import { getUser } from '../../model/states'
 import { authentication, logout } from '../../api/user/user'
 import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
 import { useLoginRoute } from '../../routes/loginRoute/loginRoute'
+import { AppBar, Avatar, Box, Button, Container, Divider, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
+import AttractionsIcon from '@mui/icons-material/Attractions'
 
-
-    
 function Sidebar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
     const main = useMainRoute()
@@ -46,28 +45,28 @@ function Sidebar() {
     }
   ]
 
-    return <AppBar position="static">
-        <Container maxWidth="xl">
-            <Toolbar disableGutters>
-                <AttractionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                <Typography
-                    variant="h6"
-                    noWrap
-                    component="a"
-                    href="/"
-                    sx={{
-                        mr: 2,
-                        display: { xs: 'none', md: 'flex' },
-                        flexGrow: 1,
-                        fontFamily: 'monospace',
-                        fontWeight: 700,
-                        letterSpacing: '.3rem',
-                        color: '#ffffff',
-                        textDecoration: 'none'
-                    }}
-                >
-                    PATHWAY
-                </Typography>
+  return <AppBar position="static">
+    <Container maxWidth="xl">
+      <Toolbar disableGutters>
+        <AttractionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        <Typography
+          variant="h6"
+          noWrap
+          component="a"
+          href="/"
+          sx={{
+            mr: 2,
+            display: { xs: 'none', md: 'flex' },
+            flexGrow: 1,
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: '#ffffff',
+            textDecoration: 'none'
+          }}
+        >
+          PATHWAY
+        </Typography>
 
         <AttractionsIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
         <Typography
@@ -86,7 +85,7 @@ function Sidebar() {
             textDecoration: 'none'
           }}
         >
-         PATHWAY
+          PATHWAY
         </Typography>
 
         <Box sx={{ flexGrow: 0 }}>
@@ -134,7 +133,7 @@ function Sidebar() {
               onClick={() => {
                 void authentication()
               }}>
-                Войти
+              Войти
             </Button>
           </>}
         </Box>

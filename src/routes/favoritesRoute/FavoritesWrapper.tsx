@@ -1,6 +1,5 @@
-import React from 'react'
-import { Sidebar } from '../../common/sidebar/Sidebar'
 import { Favorites } from '../../pages/favorites/Favorites'
+import { Sidebar } from '../../common/sidebar/Sidebar'
 
 function FavoritesWrapper() {
   return <div>

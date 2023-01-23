@@ -1,6 +1,5 @@
-import React from 'react'
-import { Sidebar } from '../../common/sidebar/Sidebar'
 import { Event } from '../../pages/event/Event'
+import { Sidebar } from '../../common/sidebar/Sidebar'
 
 function EventWrapper() {
   return <div>

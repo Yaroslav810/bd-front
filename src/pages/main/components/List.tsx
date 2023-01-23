@@ -1,12 +1,10 @@
-import { Event } from '../model/types'
-import { useEventRoute } from '../../../routes/eventRoute/eventRoute'
-import Card from '@mui/material/Card'
-import styles from '../Main.module.css'
-import { CardActionArea, CardContent, CardHeader } from '@mui/material'
-import Typography from '@mui/material/Typography'
-import Avatar from '@mui/material/Avatar'
+import { Avatar, Card, CardActionArea, CardContent, CardHeader } from '@mui/material'
 import { blue } from '@mui/material/colors'
+import { Event } from '../model/types'
 import PersonIcon from '@mui/icons-material/Person'
+import styles from './List.module.css'
+import Typography from '@mui/material/Typography'
+import { useEventRoute } from '../../../routes/eventRoute/eventRoute'
 
 interface ItemProps {
   event: Event
@@ -18,7 +16,6 @@ function Item(props: ItemProps) {
   return <Card
     onClick={() => route.goTo(props.event.id)}
     variant="outlined"
-    sx={{ maxWidth: 345 }}
     className={styles.card}
   >
     <CardActionArea>
@@ -32,7 +29,7 @@ function Item(props: ItemProps) {
       </CardContent>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: blue[500], width: 24, height: 24 }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: blue[500], width: 24, height: 24 }} aria-label="avatar">
             <PersonIcon sx={{ width: 18, height: 18 }} />
           </Avatar>
         }
@@ -53,6 +50,7 @@ function List(props: ListProps) {
     ))}
   </div>
 }
+
 export {
   List
 }

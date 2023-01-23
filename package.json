@@ -30,8 +30,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "run-eslint": "eslint \"src/*/*.ts\" --ignore-pattern node_modules/",
-    "run-eslint-fix": "eslint \"src/*/*.ts\" --ignore-pattern node_modules/ --fix"
+    "run-eslint": "eslint \"src/*/*.ts*\" --ignore-pattern node_modules/",
+    "run-eslint-fix": "eslint \"src/*/*.ts*\" --ignore-pattern node_modules/ --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -54,7 +54,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
-    "eslint": "^8.22.0",
+    "eslint": "8.22.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.5.1",

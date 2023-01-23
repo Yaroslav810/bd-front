@@ -16,6 +16,6 @@ function useLogoutRoute() {
 }
 
 export {
-    logoutRoute,
-    useLogoutRoute
+  logoutRoute,
+  useLogoutRoute
 }

@@ -5,6 +5,7 @@ import { Event as EventMainPage } from '../../pages/main/model/types'
 import { Event as EventEventPage } from '../../pages/event/model/types'
 import { getMockDataGetEvent, getMockDataGetEvents } from './mockData'
 import { mapGetEventEventDtoToEvent } from '../../pages/event/model/mapper'
+import { getAuthHeader } from '../auth'
 
 const path = `${serverPath}/event`
 
@@ -17,7 +18,9 @@ async function getEvents(): Promise<EventMainPage[]> {
     })
   }
 
-  const response = await axios.get(`${path}/get`)
+  const response = await axios.get(`${path}/get`, {
+    headers: getAuthHeader()
+  })
   return response.data.map(mapGetEventsEventDtoToEvent)
 }
 
