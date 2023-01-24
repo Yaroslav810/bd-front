@@ -10,6 +10,7 @@ function mapGetEventsEventDtoToEvent(eventDto: GetEventsEventDto): Event {
     start: eventDto.start,
     duration: eventDto.duration,
     price: eventDto.price,
+    image: eventDto.image,
     participantsCount: eventDto.participants_count,
     isLikeSet: eventDto.is_like_set
   }

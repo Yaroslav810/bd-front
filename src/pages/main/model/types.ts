@@ -6,6 +6,7 @@ interface Event {
   start: Date
   duration: number
   price?: number
+  image?: string
   participantsCount: number
   isLikeSet: boolean
 }

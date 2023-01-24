@@ -6,3 +6,8 @@
 .card {
     margin-top: 20px;
 }
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
