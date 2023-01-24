@@ -63,6 +63,7 @@ function CreateEvent() {
         fileIField.current.click()
       } else {
         setImage(null)
+        setFile(null)
         fileIField.current.value = ''
       }
     }

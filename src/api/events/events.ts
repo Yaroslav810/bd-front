@@ -47,9 +47,23 @@ async function createEvent(event: CreateEvent): Promise<boolean> {
     })
   }
 
-  await axios.post(`${path}/create`, {
-    ...event
-  }, {
+  const formData = new FormData()
+  const data: string = JSON.stringify({
+    title: event.title,
+    description: event.description,
+    start: event.start,
+    duration: event.duration,
+    price: event.price,
+    participantsCount: event.participantsCount,
+    links: event.links,
+    tags: event.tags
+  })
+  formData.append('data', data)
+  if (event.image) {
+    formData.append('image', event.image)
+  }
+
+  await axios.post(`${path}/create`, formData, {
     headers: getAuthHeader()
   })
   return true
