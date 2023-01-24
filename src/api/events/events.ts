@@ -6,6 +6,7 @@ import { Event as EventEventPage } from '../../pages/event/model/types'
 import { getMockDataGetEvent, getMockDataGetEvents } from './mockData'
 import { mapGetEventEventDtoToEvent } from '../../pages/event/model/mapper'
 import { getAuthHeader } from '../auth'
+import { CreateEvent } from '../../pages/createEvent/model/types'
 
 const path = `${serverPath}/event`
 
@@ -37,7 +38,25 @@ async function getEvent(id: string): Promise<EventEventPage> {
   return mapGetEventEventDtoToEvent(response.data)
 }
 
+async function createEvent(event: CreateEvent): Promise<boolean> {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true)
+      }, 2000)
+    })
+  }
+
+  await axios.post(`${path}/create`, {
+    ...event
+  }, {
+    headers: getAuthHeader()
+  })
+  return true
+}
+
 export {
   getEvents,
-  getEvent
+  getEvent,
+  createEvent
 }

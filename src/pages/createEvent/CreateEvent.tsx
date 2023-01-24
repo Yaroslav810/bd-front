@@ -1,6 +1,7 @@
 import { Alert, Button, Chip, ImageListItem, Snackbar } from '@mui/material'
 import { FormEvent, useRef, useState } from 'react'
 import styles from './CreateEvent.module.css'
+import { createEvent } from '../../api/events/events'
 
 // TODO: ���������� input �� Input, � ��������� �������� placeholder
 // ���������� enteredTitle � ��
@@ -20,6 +21,7 @@ const PARTICIPANTS = {
 function CreateEvent() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [file, setFile] = useState<File | null>(null)
   const [image, setImage] = useState<string | null>(null)
   const [price, setPrice] = useState<number>(0)
   const [maxParticipantsCount, setMaxParticipantsCount] = useState<number>(1)
@@ -40,6 +42,19 @@ function CreateEvent() {
     if (maxParticipantsCount < PARTICIPANTS.MIN || maxParticipantsCount > PARTICIPANTS.MAX) {
       setError(`Введите количество участников! Вы можете указать от ${PARTICIPANTS.MIN} до ${PARTICIPANTS.MAX}`)
     }
+    createEvent({
+      title,
+      description: description ?? undefined,
+      start: new Date(),
+      duration: new Date().getMilliseconds() - 10000,
+      price,
+      participantsCount: maxParticipantsCount,
+      image: file ?? undefined,
+      links,
+      tags
+    })
+      .then(console.log)
+      .catch(() => setError('Не удалось сохранить'))
   }
 
   function onLoadImage() {
@@ -64,6 +79,7 @@ function CreateEvent() {
       reader.readAsDataURL(file)
       reader.onload = () => resolve(reader.result)
     })
+    setFile(file)
 
     // eslint-disable-next-line @typescript-eslint/no-base-to-string
     void promise.then(data => setImage(data ? data.toString() : ''))
