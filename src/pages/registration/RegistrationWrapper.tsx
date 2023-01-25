@@ -1,9 +1,9 @@
-import { Login } from './Login'
-import { useEffect } from 'react'
+import { Registration } from './Registration'
 import { getUser } from '../../model/states'
+import { useEffect } from 'react'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 
-function LoginWrapper() {
+function RegistrationWrapper() {
   const user = getUser()
   const main = useMainRoute()
 
@@ -14,10 +14,10 @@ function LoginWrapper() {
   })
 
   return <div>
-    <Login />
+    <Registration />
   </div>
 }
 
 export {
-  LoginWrapper
+  RegistrationWrapper
 }

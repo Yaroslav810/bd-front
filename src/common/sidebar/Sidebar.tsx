@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 import { getUser } from '../../model/states'
-import { authentication, logout } from '../../api/user/user'
+import { logout } from '../../api/user/user'
 // import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
 import { AppBar, Avatar, Box, Button, Container, Divider, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
 import AttractionsIcon from '@mui/icons-material/Attractions'
@@ -25,7 +25,7 @@ function Sidebar() {
       onClick: profile.goTo
     },
     {
-      title: 'Favorites',
+      title: 'Любимые',
       onClick: favorites.goTo
     },
     null,
@@ -122,9 +122,7 @@ function Sidebar() {
           {!user && <>
             <Button
               color="inherit"
-              onClick={() => {
-                void authentication()
-              }}>
+              onClick={() => login.goTo()}>
               Войти
             </Button>
           </>}

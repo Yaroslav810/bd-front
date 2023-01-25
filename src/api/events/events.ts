@@ -7,6 +7,7 @@ import { getMockDataGetEvent, getMockDataGetEvents } from './mockData'
 import { mapGetEventEventDtoToEvent } from '../../pages/event/model/mapper'
 import { getAuthHeader } from '../auth'
 import { CreateEvent } from '../../pages/createEvent/model/types'
+import { FavoriteEvent } from '../../pages/favorites/model/types'
 
 const path = `${serverPath}/event`
 
@@ -109,10 +110,26 @@ async function removeLike(id: string) {
   }
 }
 
+async function getFavoriteEvents(): Promise<FavoriteEvent[]> {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(getMockDataGetEvents())
+      }, 2000)
+    })
+  }
+
+  const response = await axios.get(`${path}/liked`, {
+    headers: getAuthHeader()
+  })
+  return response.data.map(mapGetEventsEventDtoToEvent)
+}
+
 export {
   getEvents,
   getEvent,
   createEvent,
   addLike,
-  removeLike
+  removeLike,
+  getFavoriteEvents
 }

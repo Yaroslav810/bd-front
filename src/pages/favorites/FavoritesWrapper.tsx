@@ -1,4 +1,4 @@
-import { Favorites } from '../../pages/favorites/Favorites'
+import { Favorites } from './Favorites'
 import { Sidebar } from '../../common/sidebar/Sidebar'
 
 function FavoritesWrapper() {
