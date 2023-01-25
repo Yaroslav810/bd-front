@@ -4,7 +4,9 @@ import styles from './Login.module.css'
 import { useRegistrationRoute } from '../../routes/registrationRoute/registrationRoute'
 import { useCallback, useState } from 'react'
 import { authentication } from '../../api/user/user'
-import { Alert, Snackbar } from '@mui/material'
+import { Alert, Button as ButtonMui, Snackbar } from '@mui/material'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 
 function LoginContent() {
   const [login, setLogin] = useState('')
@@ -73,7 +75,12 @@ function LoginContent() {
 }
 
 function Login() {
+  const main = useMainRoute()
+
   return <div className={styles.page}>
+    <div className={styles.backButton}>
+      <ButtonMui variant="text" startIcon={<ArrowBackIosIcon />} onClick={() => main.goTo()}>На главную</ButtonMui>
+    </div>
     <LoginContent />
   </div>
 }

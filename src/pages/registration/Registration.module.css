@@ -3,6 +3,10 @@
     overflow: hidden;
 }
 
+.backButton {
+    margin: 10px;
+}
+
 .content {
     display: flex;
     flex-direction: column;

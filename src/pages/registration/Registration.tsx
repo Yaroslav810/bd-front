@@ -1,5 +1,5 @@
 import styles from './Registration.module.css'
-import { FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import { FormControl, InputLabel, MenuItem, Select, TextField, Typography, Button as ButtonMui } from '@mui/material'
 import { Button } from '../../components/button/Button'
 import { useLoginRoute } from '../../routes/loginRoute/loginRoute'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -8,6 +8,8 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 import { useCallback, useState } from 'react'
 import { Dayjs } from 'dayjs'
 import { MIN_LOGIN, MIN_NAME, MIN_PASSWORD } from '../../model/utils'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 
 function RegistrationContent() {
   const loginRoute = useLoginRoute()
@@ -32,6 +34,9 @@ function RegistrationContent() {
     }
     if (password.length < MIN_PASSWORD) {
       setPasswordError(`Взломают за 5 секунд! Нужно минимум ${MIN_PASSWORD} символа`)
+    }
+    if (loginError || firstNameError || passwordError) {
+      return
     }
     console.log(login)
     console.log(firstName)
@@ -130,7 +135,12 @@ function RegistrationContent() {
 }
 
 function Registration() {
+  const main = useMainRoute()
+
   return <div className={styles.page}>
+    <div className={styles.backButton}>
+      <ButtonMui variant="text" startIcon={<ArrowBackIosIcon />} onClick={() => main.goTo()}>На главную</ButtonMui>
+    </div>
     <RegistrationContent />
   </div>
 }

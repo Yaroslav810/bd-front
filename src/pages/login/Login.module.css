@@ -5,6 +5,10 @@
     overflow: hidden;
 }
 
+.backButton {
+    margin: 10px;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -67,11 +71,11 @@
     }
 }
 
-.page:hover span {
+.page:hover .content span {
     animation: bounce .6s;
 }
 
-.btn:hover span {
+.btn:hover .content span {
     animation: bounce .6s;
 }
 
