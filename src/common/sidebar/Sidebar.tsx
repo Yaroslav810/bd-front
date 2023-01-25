@@ -8,6 +8,7 @@ import { AppBar, Avatar, Box, Button, Container, Divider, IconButton, Menu, Menu
 import AttractionsIcon from '@mui/icons-material/Attractions'
 import { useProfileRoute } from '../../routes/profileRoute/profileRoute'
 import { useLoginRoute } from '../../routes/loginRoute/loginRoute'
+import styles from './Sidebar.module.css'
 
 function Sidebar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
@@ -61,6 +62,7 @@ function Sidebar() {
             textDecoration: 'none'
           }}
           onClick={() => main.goTo()}
+          className={styles.title}
         >
           PATHWAY
         </Typography>
