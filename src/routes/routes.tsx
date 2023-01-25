@@ -4,7 +4,9 @@ import { CreateEventWrapper } from '../pages/createEvent/CreateEventWrapper'
 import { eventRoute } from './eventRoute/eventRoute'
 import { EventWrapper } from './eventRoute/EventWrapper'
 import { favoritesRoute } from './favoritesRoute/favoritesRoute'
-import { FavoritesWrapper } from '../pages/favorites/FavoritesWrapper'
+import { FavoritesWrapper } from './favoritesRoute/FavoritesWrapper'
+import { profileRoute } from './profileRoute/profileRoute'
+import { ProfileWrapper } from '../pages/profile/ProfileWrapper'
 import { loginRoute } from './loginRoute/loginRoute'
 import { LoginWrapper } from '../pages/login/LoginWrapper'
 import { logoutRoute } from './logoutRoute/logoutRoute'
@@ -14,6 +16,7 @@ import { MainWrapper } from '../pages/main/MainWrapper'
 import { ReactElement, useEffect } from 'react'
 import { RouteObject } from 'react-router'
 import { getUser } from '../model/states'
+import { Profile } from '../pages/profile/Profile'
 import { registrationRoute } from './registrationRoute/registrationRoute'
 import { RegistrationWrapper } from '../pages/registration/RegistrationWrapper'
 
@@ -42,6 +45,10 @@ const routes: RouteObject[] = [
   {
     path: logoutRoute().getPath(),
     element: <ProtectedLayout component={<LogoutWrapper />} />
+  },
+  {
+    path: profileRoute().getPath(),
+    element: <ProfileWrapper />
   },
   {
     path: eventRoute().getPath(),
