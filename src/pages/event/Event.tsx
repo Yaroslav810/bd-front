@@ -1,4 +1,15 @@
-import { Avatar, Button, Card, CardContent, CardHeader, Chip, ImageListItem, Tooltip, Typography } from '@mui/material'
+import {
+  Avatar,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Chip,
+  ImageListItem,
+  Tooltip,
+  Typography
+} from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import { blue } from '@mui/material/colors'
 import { Event as EventType } from './model/types'
@@ -9,6 +20,7 @@ import { useBack } from '../../routes/useBack'
 import { useEvents } from './useEvents'
 import { useParams } from 'react-router'
 import { getImage } from '../../api/utils'
+import { Like } from '../../components/like/Like'
 
 interface ContentProps {
   event: EventType
@@ -26,7 +38,7 @@ function Content(props: ContentProps) {
     let result = ''
     days && (result += `${days} д. `)
     hours && (result += `${hours} ч. `)
-    minutes && (result += `${minutes} мин. `)
+    minutes && (result += `${minutes} мин.`)
     return result
   }
 
@@ -46,6 +58,10 @@ function Content(props: ContentProps) {
             </Avatar>
           }
           title={props.event.userName}
+          action={
+            <CardActions className={styles.like}>
+              <Like id={props.event.id} isLikeSet={props.event.isLikeSet} />
+            </CardActions>}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" className={styles.title}>

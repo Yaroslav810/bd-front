@@ -34,7 +34,9 @@ async function getEvent(id: string): Promise<EventEventPage> {
     })
   }
 
-  const response = await axios.get(`${path}/get/${id}`)
+  const response = await axios.get(`${path}/get/${id}`, {
+    headers: getAuthHeader()
+  })
   return mapGetEventEventDtoToEvent(response.data)
 }
 
@@ -69,8 +71,48 @@ async function createEvent(event: CreateEvent): Promise<boolean> {
   return true
 }
 
+async function addLike(id: string) {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true)
+      }, 2000)
+    })
+  }
+
+  try {
+    await axios.post(`${path}/add-like/${id}`, {}, {
+      headers: getAuthHeader()
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
+async function removeLike(id: string) {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true)
+      }, 2000)
+    })
+  }
+
+  try {
+    await axios.post(`${path}/remove-like/${id}`, {}, {
+      headers: getAuthHeader()
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
 export {
   getEvents,
   getEvent,
-  createEvent
+  createEvent,
+  addLike,
+  removeLike
 }

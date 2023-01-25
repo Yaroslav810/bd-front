@@ -22,3 +22,7 @@
 .image {
     flex-shrink: 0;
 }
+
+.like {
+    margin-right: 12px;
+}
