@@ -25,7 +25,7 @@ function Item(props: ItemProps) {
           <Typography gutterBottom variant="h5" component="div">
             {props.event.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" className={styles.description}>
             {props.event.description}
           </Typography>
         </div>

@@ -2,16 +2,16 @@ import { useState } from 'react'
 import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 import { getUser } from '../../model/states'
-import { authentication } from '../../api/user/user'
+import { authentication, logout } from '../../api/user/user'
 // import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
-import { useLoginRoute } from '../../routes/loginRoute/loginRoute'
 import { AppBar, Avatar, Box, Button, Container, Divider, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
 import AttractionsIcon from '@mui/icons-material/Attractions'
+import { useLogoutRoute } from '../../routes/logoutRoute/logoutRoute'
 
 function Sidebar() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
   const main = useMainRoute()
-  const login = useLoginRoute()
+  const login = useLogoutRoute()
   // const createEvent = useCreateEventRoute()
   const favorites = useFavoritesRoute()
 
@@ -29,7 +29,9 @@ function Sidebar() {
     null,
     {
       title: 'Выйти',
-      onClick: login.goTo
+      onClick: () => {
+        void logout().then(login.goTo)
+      }
     }
   ]
 

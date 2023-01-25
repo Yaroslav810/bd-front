@@ -47,6 +47,8 @@ function getMockDataGetEvent(): EventPageEvent {
     start: new Date('2022-11-19T20:27:21.083Z'),
     duration: 100000,
     participantsCount: 0,
+    tags: ['tag'],
+    links: ['https://ya.ru'],
     isLikeSet: false
   }
 }

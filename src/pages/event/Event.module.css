@@ -1,0 +1,63 @@
+.button {
+    padding: 20px 20px 10px;
+}
+
+.preloader {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.content {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.card {
+    flex: 1;
+}
+
+.title {
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.image {
+    flex-shrink: 0;
+}
+
+.image img {
+    object-fit: contain !important;
+}
+
+.info {
+    margin-top: 20px;
+}
+
+.infoContent {
+    padding: 20px !important;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rowLabel {
+    margin: 0 !important;
+}
