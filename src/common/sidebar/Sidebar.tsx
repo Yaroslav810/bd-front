@@ -23,7 +23,7 @@ function Sidebar() {
       onClick: main.goTo
     },
     {
-      title: 'Favorites',
+      title: 'Любимые',
       onClick: favorites.goTo
     },
     null,
