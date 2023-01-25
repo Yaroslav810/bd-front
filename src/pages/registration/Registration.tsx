@@ -7,17 +7,32 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 import { useCallback, useState } from 'react'
 import { Dayjs } from 'dayjs'
+import { MIN_LOGIN, MIN_NAME, MIN_PASSWORD } from '../../model/utils'
 
 function RegistrationContent() {
   const loginRoute = useLoginRoute()
   const [login, setLogin] = useState('')
+  const [loginError, setLoginError] = useState('')
   const [firstName, setFirstName] = useState('')
+  const [firstNameError, setFirstNameError] = useState('')
   const [lastName, setLastName] = useState('')
   const [birthdayDay, setBirthdayDay] = useState<Dayjs | null>(null)
   const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
   const [type, setType] = useState('user')
 
   const onRegistration = useCallback(() => {
+    const loginImpl = login.trim()
+    const firstNameImpl = firstName.trim()
+    if (loginImpl.length < MIN_LOGIN) {
+      setLoginError(`Нужен корректный логин! Не пустой! А символов больше ${MIN_LOGIN}`)
+    }
+    if (firstNameImpl.length < MIN_NAME) {
+      setFirstNameError(`Необходимо корректное имя! Не пустое! А символов больше ${MIN_NAME}`)
+    }
+    if (password.length < MIN_PASSWORD) {
+      setPasswordError(`Взломают за 5 секунд! Нужно минимум ${MIN_PASSWORD} символа`)
+    }
     console.log(login)
     console.log(firstName)
     console.log(lastName)
@@ -31,20 +46,26 @@ function RegistrationContent() {
 
     <div className={styles.fields}>
       <TextField
+        error={!!loginError}
         id="login"
         className={styles.field}
+        label="Логин"
         value={login}
         onChange={e => setLogin(e.currentTarget.value)}
-        label="Логин"
+        onClick={() => setLoginError('')}
+        helperText={loginError}
         variant="standard"
         color="success"
       />
       <TextField
+        error={!!firstNameError}
         id="firstName"
         className={styles.field}
         label="Имя"
         value={firstName}
         onChange={e => setFirstName(e.currentTarget.value)}
+        onClick={() => setFirstNameError('')}
+        helperText={firstNameError}
         variant="standard"
         color="success" />
       <TextField
@@ -65,12 +86,15 @@ function RegistrationContent() {
         />
       </LocalizationProvider>
       <TextField
+        error={!!passwordError}
         id="password"
         className={styles.field}
         type={'password'}
         label="Пароль"
         value={password}
         onChange={e => setPassword(e.currentTarget.value)}
+        onClick={() => setPasswordError('')}
+        helperText={passwordError}
         variant="standard"
         color="success" />
       <FormControl className={styles.field} variant="standard" color="success">
