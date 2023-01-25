@@ -45,7 +45,6 @@ function Sidebar() {
           variant="h6"
           noWrap
           component="a"
-          href="/"
           sx={{
             mr: 2,
             display: { xs: 'none', md: 'flex' },
@@ -56,6 +55,7 @@ function Sidebar() {
             color: '#ffffff',
             textDecoration: 'none'
           }}
+          onClick={() => main.goTo()}
         >
           PATHWAY
         </Typography>

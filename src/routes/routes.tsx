@@ -4,7 +4,7 @@ import { CreateEventWrapper } from '../pages/createEvent/CreateEventWrapper'
 import { eventRoute } from './eventRoute/eventRoute'
 import { EventWrapper } from './eventRoute/EventWrapper'
 import { favoritesRoute } from './favoritesRoute/favoritesRoute'
-import { FavoritesWrapper } from './favoritesRoute/FavoritesWrapper'
+import { FavoritesWrapper } from '../pages/favorites/FavoritesWrapper'
 import { profileRoute } from './profileRoute/profileRoute'
 import { ProfileWrapper } from '../pages/profile/ProfileWrapper'
 import { loginRoute } from './loginRoute/loginRoute'
@@ -16,7 +16,6 @@ import { MainWrapper } from '../pages/main/MainWrapper'
 import { ReactElement, useEffect } from 'react'
 import { RouteObject } from 'react-router'
 import { getUser } from '../model/states'
-import { Profile } from '../pages/profile/Profile'
 import { registrationRoute } from './registrationRoute/registrationRoute'
 import { RegistrationWrapper } from '../pages/registration/RegistrationWrapper'
 
@@ -48,7 +47,7 @@ const routes: RouteObject[] = [
   },
   {
     path: profileRoute().getPath(),
-    element: <ProfileWrapper />
+    element: <ProtectedLayout component={<ProfileWrapper />} />
   },
   {
     path: eventRoute().getPath(),
