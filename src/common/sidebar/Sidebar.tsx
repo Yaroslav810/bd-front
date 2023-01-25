@@ -3,7 +3,7 @@ import { useFavoritesRoute } from '../../routes/favoritesRoute/favoritesRoute'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 import { getUser } from '../../model/states'
 import { logout } from '../../api/user/user'
-// import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
+import { useCreateEventRoute } from '../../routes/createEventRoute/createEventRoute'
 import { AppBar, Avatar, Box, Button, Container, Divider, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
 import AttractionsIcon from '@mui/icons-material/Attractions'
 import { useLogoutRoute } from '../../routes/logoutRoute/logoutRoute'
@@ -14,19 +14,24 @@ function Sidebar() {
   const main = useMainRoute()
   const profile = useProfileRoute()
   const login = useLogoutRoute()
-  // const createEvent = useCreateEventRoute()
+  const createEvent = useCreateEventRoute()
   const favorites = useFavoritesRoute()
 
   const user = getUser()
 
   const settings = [
     {
-      title: 'Profile',
+      title: 'Профиль',
       onClick: profile.goTo
     },
     {
       title: 'Любимые',
       onClick: favorites.goTo
+    },
+    null,
+    {
+      title: 'Создать мероприятие',
+      onClick: () => createEvent.goTo()
     },
     null,
     {
