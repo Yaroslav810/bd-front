@@ -1,20 +1,10 @@
-/* function Favorites() {
-  return <div>
-    <a href="/">Главная</a>
-  </div>
-}
-
-export {
-  Favorites
-}
-*/
-
 import { ErrorContent } from '../../common/error/ErrorContent'
 import { List } from '../main/components/List'
 import { favoriteStates } from './model/states'
 import { Preloader } from '../../common/preloader/Preloader'
-import styles from '../main/Main.module.css'
+import styles from './Favorites.module.css'
 import { useAtom } from '@reatom/npm-react'
+import { Typography } from '@mui/material'
 
 function Favorites() {
   const [data] = useAtom(favoriteStates.events)
@@ -29,8 +19,13 @@ function Favorites() {
       : <ErrorContent />
   }
 
-  return <div className={styles.main}>
-    {content}
+  return <div className={styles.favorites}>
+    <Typography variant="h4" gutterBottom>
+      Любимые события
+    </Typography>
+    <div className={styles.content}>
+      {content}
+    </div>
   </div>
 }
 

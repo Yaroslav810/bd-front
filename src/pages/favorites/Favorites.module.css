@@ -1,0 +1,11 @@
+.favorites {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
