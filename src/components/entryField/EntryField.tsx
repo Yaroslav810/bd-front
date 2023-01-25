@@ -13,11 +13,12 @@ interface Props {
   style?: CSSProperties
   className?: string
   label?: string
+  type?: string
   onChange?: (value: string) => void
   onInput?: (value: string) => void
 }
 
-export function EntryField({ label, value, style, onChange, onInput, className }: Props) {
+export function EntryField({ label, value, style, type, onChange, onInput, className }: Props) {
   const [text, setText] = useState(value ?? '')
 
   useEffect(() => {
@@ -46,7 +47,7 @@ export function EntryField({ label, value, style, onChange, onInput, className }
       <input
         id={value}
         className={className}
-        type="text"
+        type={type ?? 'text'}
         value={text}
         onChange={handleChange}
         onBlur={handleBlur}

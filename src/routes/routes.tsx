@@ -14,6 +14,8 @@ import { MainWrapper } from '../pages/main/MainWrapper'
 import { ReactElement, useEffect } from 'react'
 import { RouteObject } from 'react-router'
 import { getUser } from '../model/states'
+import { registrationRoute } from './registrationRoute/registrationRoute'
+import { RegistrationWrapper } from '../pages/registration/RegistrationWrapper'
 
 function ProtectedLayout({ component }: { component: ReactElement }) {
   const user = getUser()
@@ -52,6 +54,10 @@ const routes: RouteObject[] = [
   {
     path: createEventRoute().getPath(),
     element: <ProtectedLayout component={<CreateEventWrapper />} />
+  },
+  {
+    path: registrationRoute().getPath(),
+    element: <RegistrationWrapper />
   }
 ]
 

@@ -22,7 +22,7 @@ async function getCurrentUser(): Promise<User | null> {
   return (response.data != null) ? mapGetCurrentUserDtoToUser(response.data) : null
 }
 
-async function authentication() {
+async function authentication(login: string, password: string) {
   if (isMock) {
     return await new Promise(resolve => {
       setTimeout(() => {
@@ -32,15 +32,18 @@ async function authentication() {
   }
 
   const response = await axios.post(`${path}/authentication`, {
-    login: 'Yaroslav8',
-    password: '12345Q'
+    login,
+    password
   }, {
     headers: getAuthHeader()
   })
   updateToken(response.data)
   if (response.data !== null) {
     window.location.reload()
+    return true
   }
+
+  return false
 }
 
 async function logout() {
