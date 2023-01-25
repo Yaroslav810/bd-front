@@ -8,6 +8,7 @@ import { mapGetEventEventDtoToEvent } from '../../pages/event/model/mapper'
 import { getAuthHeader } from '../auth'
 import { CreateEvent } from '../../pages/createEvent/model/types'
 import { FavoriteEvent } from '../../pages/favorites/model/types'
+import { MyEvent } from '../../pages/profile/model/types'
 
 const path = `${serverPath}/event`
 
@@ -125,11 +126,27 @@ async function getFavoriteEvents(): Promise<FavoriteEvent[]> {
   return response.data.map(mapGetEventsEventDtoToEvent)
 }
 
+async function getMyEvents(): Promise<MyEvent[]> {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(getMockDataGetEvents())
+      }, 2000)
+    })
+  }
+
+  const response = await axios.get(`${path}/my`, {
+    headers: getAuthHeader()
+  })
+  return response.data.map(mapGetEventsEventDtoToEvent)
+}
+
 export {
   getEvents,
   getEvent,
   createEvent,
   addLike,
   removeLike,
-  getFavoriteEvents
+  getFavoriteEvents,
+  getMyEvents
 }
