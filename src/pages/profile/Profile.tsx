@@ -8,11 +8,12 @@ import { Typography } from '@mui/material'
 import { getMockCurrentUser } from '../../api/user/mockData'
 import { Avatar } from '@mui/material'
 
-
 function Profile() {
   const [data] = useAtom(profileStates.events)
   const [isLoading] = useAtom(profileStates.loaded)
-  const user = getMockCurrentUser()
+  const user = getUser()
+
+  console.log(data)
 
   let content
   if (isLoading > 0) {
