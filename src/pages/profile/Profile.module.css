@@ -2,10 +2,28 @@
     padding: 50px;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .content {
     margin-top: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: center;  
+}
+
+.infoProfile {
+    padding: 10px 0;
+    border-radius: 8.8px;
+    box-shadow: 0 12px 25px rgb(86 87 95 / 20%);
+}
+
+.infoProfile:hover {
+    box-shadow: 0 15px 40px rgb(0 0 0 / 20%);
+    transform: translateY(-8px);
+}
+
+.avatar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 }

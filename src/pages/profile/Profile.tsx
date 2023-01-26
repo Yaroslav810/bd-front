@@ -6,6 +6,7 @@ import styles from './Profile.module.css'
 import { useAtom } from '@reatom/npm-react'
 import { Typography } from '@mui/material'
 import { getMockCurrentUser } from '../../api/user/mockData'
+import { Avatar } from '@mui/material'
 
 
 function Profile() {
@@ -25,21 +26,24 @@ function Profile() {
     if (user)
     {
         infoUser = <div>
-            <p>{user.firstName}</p>
-            <p>{user.lastName}</p>
-            <p>{user.login}</p>
+            <span className={styles.firstName}>{user.firstName}</span>
+            <span> </span>
+            <span className={styles.lastName}>{user.lastName}</span>
+            <p className={styles.login}>{user.login}</p>
         </div>
     }
-  return <div className={styles.main}>
-    {infoUser}
-    {content}
-  </div>
 
   return <div className={styles.profile}>
-    <Typography variant="h4" gutterBottom>
-      Профиль
-    </Typography>
-    <div className={styles.content}>
+      <div className={styles.infoProfile}>
+          <Typography variant="h4" gutterBottom>
+              Профиль
+          </Typography>
+          
+              <Avatar src="/static/images/avatar/2.jpg" className={styles.avatar}/>
+          
+          {infoUser}
+      </div>
+      <div className={styles.content}> 
       {content}
     </div>
   </div>

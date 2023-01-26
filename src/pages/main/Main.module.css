@@ -33,15 +33,8 @@
     height: auto;
 }
 
-.info {
-    /*border-radius: 10px;*/
-}
-
 .rightContent div div {
-    /*padding-top: 50px;
-    margin-top: 50px;*/
     min-height: 150px;
-
 }
 
 .infoTop, .infoBottom {
@@ -62,8 +55,6 @@
     -ms-flex: 1 0 0;
     flex: 1 0 0;
     min-width: 300px;
-    /*background-color: blue;
-    margin: 0 5px 15px 0;*/
 }
 
 .info p:first-child {
