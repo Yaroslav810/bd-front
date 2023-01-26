@@ -1,12 +1,12 @@
 import { Alert, Button, Chip, ImageListItem, Snackbar } from '@mui/material'
 import { FormEvent, useRef, useState } from 'react'
-import styles from './CreateEvent.module.css'
+import styles from './EditEvent.module.css'
 import { createEvent } from '../../api/events/events'
 import { useProfileRoute } from '../../routes/profileRoute/profileRoute'
 import { MAX_LINKS, MAX_TAGS, MILLISECONDS_PER_DAY, PARTICIPANTS, PRICE } from '../../model/utils'
 import dayjs, { Dayjs } from 'dayjs'
 
-function CreateEvent() {
+function EditEvent() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [file, setFile] = useState<File | null>(null)
@@ -255,5 +255,5 @@ function CreateEvent() {
 }
 
 export {
-  CreateEvent
+  EditEvent
 }

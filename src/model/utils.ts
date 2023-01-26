@@ -2,8 +2,30 @@ const MIN_LOGIN = 3
 const MIN_NAME = 2
 const MIN_PASSWORD = 6
 
+const MAX_TAGS = 10
+const MAX_LINKS = 3
+
+const PRICE = {
+  MIN: 0,
+  MAX: 100000
+}
+const PARTICIPANTS = {
+  MIN: 1,
+  MAX: 300
+}
+
+const MILLISECONDS_PER_DAY = 86400000
+
 export {
   MIN_LOGIN,
   MIN_NAME,
-  MIN_PASSWORD
+  MIN_PASSWORD,
+
+  MAX_TAGS,
+  MAX_LINKS,
+
+  PRICE,
+  PARTICIPANTS,
+
+  MILLISECONDS_PER_DAY
 }

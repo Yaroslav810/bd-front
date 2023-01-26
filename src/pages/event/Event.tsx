@@ -29,6 +29,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { useState, MouseEvent, useCallback } from 'react'
 import { removeEvent } from '../../api/events/events'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
+import { useEditEventRoute } from '../../routes/editEventRoute/editEventRoute'
 
 interface ContentProps {
   event: EventType
@@ -45,6 +46,7 @@ function Content(props: ContentProps) {
   }
   const [msg, setMsg] = useState('')
   const mainRoute = useMainRoute()
+  const editEvent = useEditEventRoute()
 
   const onDeleteEvent = useCallback(() => {
     handleClose()
@@ -114,7 +116,7 @@ function Content(props: ContentProps) {
                     'aria-labelledby': 'basic-button'
                   }}
                 >
-                  <MenuItem onClick={handleClose} className={styles.menuItem}><EditIcon className={styles.editIcon} />Редактировать</MenuItem>
+                  <MenuItem onClick={editEvent.goTo} className={styles.menuItem}><EditIcon className={styles.editIcon} />Редактировать</MenuItem>
                   <MenuItem onClick={onDeleteEvent} className={styles.menuItem}><DeleteOutlineIcon color={'error'} />Удалить</MenuItem>
                 </Menu>
               </>}

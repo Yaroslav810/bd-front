@@ -1,0 +1,121 @@
+.container {
+    max-width: 1536px;
+    margin: 0 auto;
+}
+
+.imageItem {
+    border-radius: 12px;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 10px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgb(0 0 0 / 20%);
+    margin: 20px 30px;
+    background: #00ffff url(https://bogatyr.club/uploads/posts/2021-11/thumbs/1636931592_2-bogatyr-club-p-fon-puziri-2.jpg) no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.content:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.rightContent,
+.leftContent {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    padding: 25px;
+    border-radius: 10px;
+    background: rgba(250, 250, 250, .4);
+    flex-basis: 100%;
+    z-index: 1;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.links > div {
+    margin-top: 5px;
+    justify-content: space-between;
+}
+
+.content .form input,
+.content .form textarea {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    min-width: 160px;
+    min-height: 40px;
+    border: none;
+    border-radius: 10px;
+    font: 18px/1.4 'Helvetica', Arial, Lucida Grande, sans-serif;
+    color: black;
+    background: rgba(250, 250, 250, .4);
+}
+
+.content .form textarea {
+    resize: none;
+    flex: 1 0 135px;
+    outline: none;
+}
+
+.content input:focus {
+    border: none;
+    outline: none;
+}
+
+.content .form input:disabled,
+.content .form textarea:disabled {
+    background: rgba(250, 250, 250, .15);
+}
+
+.content .form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.content .form .label {
+    font: 18px/1.4 'Helvetica', Arial, Lucida Grande, sans-serif;
+    margin: 10px 0 0;
+}
+
+.btnSave {
+    margin: 20px 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btnDownload {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 30px;
+}
+
+.downloadField {
+    display: none;
+}
+
+.tags > div {
+    margin: 5px 10px 0 0;
+}
