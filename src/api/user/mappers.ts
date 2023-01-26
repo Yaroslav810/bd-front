@@ -1,6 +1,4 @@
-import {
-    Dto, GetCurrentUserDto
-} from './types'
+import { GetCurrentUserDto } from './types'
 import { User } from '../../model/types'
 
 function mapGetCurrentUserDtoToUser(currentUser: GetCurrentUserDto): User {

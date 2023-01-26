@@ -5,13 +5,14 @@ import { Preloader } from '../../common/preloader/Preloader'
 import styles from './Profile.module.css'
 import { useAtom } from '@reatom/npm-react'
 import { Typography } from '@mui/material'
-import { getMockCurrentUser } from '../../api/user/mockData'
-
+import { getUser } from '../../model/states'
 
 function Profile() {
   const [data] = useAtom(profileStates.events)
   const [isLoading] = useAtom(profileStates.loaded)
-  const user = getMockCurrentUser()
+  const user = getUser()
+
+  console.log(data)
 
   let content
   if (isLoading > 0) {
@@ -21,25 +22,21 @@ function Profile() {
       ? <List events={data} />
       : <ErrorContent />
   }
-    let infoUser
-    if (user)
-    {
-        infoUser = <div>
-            <p>{user.firstName}</p>
-            <p>{user.lastName}</p>
-            <p>{user.login}</p>
-        </div>
-    }
-  return <div className={styles.main}>
-    {infoUser}
-    {content}
-  </div>
+  let infoUser
+  if (user) {
+    infoUser = <div>
+      <p>Имя: {user.firstName}</p>
+      <p>Фамилия: {user.lastName ?? '-'}</p>
+      <p>Логин: {user.login}</p>
+    </div>
+  }
 
   return <div className={styles.profile}>
     <Typography variant="h4" gutterBottom>
       Профиль
     </Typography>
     <div className={styles.content}>
+      {infoUser}
       {content}
     </div>
   </div>

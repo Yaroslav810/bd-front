@@ -1,7 +1,6 @@
 import { UserType } from '../../model/types'
 
-interface Get
-    Dto {
+interface GetCurrentUserDto {
   id: string
   firstName: string
   lastName?: string

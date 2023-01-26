@@ -22,6 +22,33 @@ async function getCurrentUser(): Promise<User | null> {
   return (response.data != null) ? mapGetCurrentUserDtoToUser(response.data) : null
 }
 
+async function registration(
+  login: string,
+  name: string,
+  lastName: string | null,
+  birthdayDay: Date | null,
+  password: string,
+  type: 'user' | 'company'): Promise<boolean> {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true)
+      }, 2000)
+    })
+  }
+
+  return (await axios.post(`${path}/registration`, {
+    login,
+    first_name: name,
+    last_name: lastName ?? undefined,
+    birth_date: birthdayDay ?? undefined,
+    password,
+    type
+  }, {
+    headers: getAuthHeader()
+  })).data
+}
+
 async function authentication(login: string, password: string) {
   if (isMock) {
     return await new Promise(resolve => {
@@ -53,6 +80,7 @@ async function logout() {
 
 export {
   getCurrentUser,
+  registration,
   authentication,
   logout
 }

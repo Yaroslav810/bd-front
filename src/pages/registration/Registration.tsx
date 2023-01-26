@@ -6,10 +6,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 import { useCallback, useState } from 'react'
-import { Dayjs } from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import { MIN_LOGIN, MIN_NAME, MIN_PASSWORD } from '../../model/utils'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
+import { registration } from '../../api/user/user'
 
 function RegistrationContent() {
   const loginRoute = useLoginRoute()
@@ -24,27 +25,43 @@ function RegistrationContent() {
   const [type, setType] = useState('user')
 
   const onRegistration = useCallback(() => {
+    setLoginError('')
+    setFirstNameError('')
+    setPasswordError('')
     const loginImpl = login.trim()
     const firstNameImpl = firstName.trim()
-    if (loginImpl.length < MIN_LOGIN) {
+    const isLoginError = loginImpl.length < MIN_LOGIN
+    if (isLoginError) {
       setLoginError(`Нужен корректный логин! Не пустой! А символов больше ${MIN_LOGIN}`)
     }
-    if (firstNameImpl.length < MIN_NAME) {
+    const isFirstNameError = firstNameImpl.length < MIN_NAME
+    if (isFirstNameError) {
       setFirstNameError(`Необходимо корректное имя! Не пустое! А символов больше ${MIN_NAME}`)
     }
-    if (password.length < MIN_PASSWORD) {
+    const isPasswordError = password.length < MIN_PASSWORD
+    if (isPasswordError) {
       setPasswordError(`Взломают за 5 секунд! Нужно минимум ${MIN_PASSWORD} символа`)
     }
-    if (loginError || firstNameError || passwordError) {
+    if (isLoginError || isFirstNameError || isPasswordError) {
       return
     }
-    console.log(login)
-    console.log(firstName)
-    console.log(lastName)
-    console.log(birthdayDay)
-    console.log(password)
-    console.log(type)
-  }, [login, firstName, lastName, birthdayDay, type])
+
+    void registration(
+      login,
+      firstName,
+      lastName,
+      birthdayDay ? birthdayDay.toDate() : null,
+      password,
+      type === 'user' ? 'user' : 'company'
+    )
+      .then(data => {
+        if (data) {
+          loginRoute.goTo()
+        } else {
+          setLoginError('Логин уже занят')
+        }
+      })
+  }, [login, firstName, lastName, birthdayDay, type, password])
 
   return <div className={styles.content}>
     <Typography variant="h4" gutterBottom>Регистрация</Typography>
@@ -85,6 +102,7 @@ function RegistrationContent() {
         <DesktopDatePicker
           label="Дата рождения"
           inputFormat="DD/MM/YYYY"
+          maxDate={dayjs()}
           value={birthdayDay}
           onChange={setBirthdayDay}
           renderInput={(params) => <TextField {...params} className={styles.field} variant="standard" color="success" />}
