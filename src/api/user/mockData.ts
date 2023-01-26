@@ -9,6 +9,9 @@ const user: User = {
   token: ''
 }
 
+
+//const user = null
+
 function getMockCurrentUser(): User | null {
   return user
 }

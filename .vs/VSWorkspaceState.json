@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\api",
+    "\\src\\api\\user",
+    "\\src\\pages",
+    "\\src\\pages\\profile",
+    "\\src\\pages\\profile\\model",
+    "\\src\\routes",
+    "\\src\\routes\\mainRoute",
+    "\\src\\routes\\profileRoute"
+  ],
+  "SelectedNode": "\\src\\pages\\profile\\Profile.tsx",
+  "PreviewInSolutionExplorer": false
+}
