@@ -24,6 +24,8 @@ interface GetEventEventDto {
   links: string[]
   participants_count: number
   is_like_set: boolean
+  is_can_edit: boolean
+  is_can_delete: boolean
 }
 
 export {

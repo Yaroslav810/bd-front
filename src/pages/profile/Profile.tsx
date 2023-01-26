@@ -12,8 +12,6 @@ function Profile() {
   const [isLoading] = useAtom(profileStates.loaded)
   const user = getUser()
 
-  console.log(data)
-
   let content
   if (isLoading > 0) {
     content = <Preloader />

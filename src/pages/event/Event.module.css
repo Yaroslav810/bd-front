@@ -1,3 +1,7 @@
+.alert {
+    margin-bottom: 20px;
+}
+
 .button {
     padding: 20px 20px 10px;
 }
@@ -62,6 +66,11 @@
     margin: 0 !important;
 }
 
-.like {
-    margin-right: 6px;
+.menuItem {
+    display: flex;
+    gap: 15px;
+}
+
+.editIcon {
+    color: rgba(0, 0, 0, 0.54)
 }

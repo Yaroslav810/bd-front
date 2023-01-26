@@ -1,12 +1,14 @@
 import {
+  Alert,
+  AlertTitle,
   Avatar,
   Button,
   Card,
   CardActions,
   CardContent,
   CardHeader,
-  Chip,
-  ImageListItem,
+  Chip, IconButton,
+  ImageListItem, Menu, MenuItem,
   Tooltip,
   Typography
 } from '@mui/material'
@@ -21,12 +23,38 @@ import { useEvents } from './useEvents'
 import { useParams } from 'react-router'
 import { getImage } from '../../api/utils'
 import { Like } from '../../components/like/Like'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import EditIcon from '@mui/icons-material/Edit'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { useState, MouseEvent, useCallback } from 'react'
+import { removeEvent } from '../../api/events/events'
+import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 
 interface ContentProps {
   event: EventType
 }
 
 function Content(props: ContentProps) {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+  const [msg, setMsg] = useState('')
+  const mainRoute = useMainRoute()
+
+  const onDeleteEvent = useCallback(() => {
+    handleClose()
+    void removeEvent(props.event.id)
+      .then(() => {
+        setMsg('Мероприятие удалено!')
+        setTimeout(mainRoute.goTo, 3000)
+      })
+  }, [])
+
   const start = new Date(props.event.start)
   const timer = () => {
     let delta = props.event.duration / 1000
@@ -43,6 +71,10 @@ function Content(props: ContentProps) {
   }
 
   return <div className={styles.container}>
+    {!!msg.length && <Alert severity="success" className={styles.alert}>
+      <AlertTitle>Успешно!</AlertTitle>
+      {msg}
+    </Alert>}
     <div>
       {props.event.tags.map(tag => <Chip key={tag} label={tag} />)}
     </div>
@@ -59,8 +91,33 @@ function Content(props: ContentProps) {
           }
           title={props.event.userName}
           action={
-            <CardActions className={styles.like}>
-              <Like id={props.event.id} isLikeSet={props.event.isLikeSet} />
+            <CardActions>
+              <IconButton>
+                <Like id={props.event.id} isLikeSet={props.event.isLikeSet} />
+              </IconButton>
+              {(props.event.isCanEdit || props.event.isCanDelete) && <>
+                <IconButton
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                >
+                  <MoreVertIcon/>
+                </IconButton>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button'
+                  }}
+                >
+                  <MenuItem onClick={handleClose} className={styles.menuItem}><EditIcon className={styles.editIcon} />Редактировать</MenuItem>
+                  <MenuItem onClick={onDeleteEvent} className={styles.menuItem}><DeleteOutlineIcon color={'error'} />Удалить</MenuItem>
+                </Menu>
+              </>}
             </CardActions>}
         />
         <CardContent>

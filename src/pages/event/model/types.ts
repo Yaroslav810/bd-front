@@ -11,6 +11,8 @@ interface Event {
   links: string[]
   participantsCount: number
   isLikeSet: boolean
+  isCanDelete: boolean
+  isCanEdit: boolean
 }
 
 export {

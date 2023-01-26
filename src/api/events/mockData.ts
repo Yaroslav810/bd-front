@@ -49,7 +49,9 @@ function getMockDataGetEvent(): EventPageEvent {
     participantsCount: 0,
     tags: ['tag'],
     links: ['https://ya.ru'],
-    isLikeSet: false
+    isLikeSet: false,
+    isCanEdit: true,
+    isCanDelete: true
   }
 }
 

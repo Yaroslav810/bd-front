@@ -2,6 +2,7 @@ import { Alert, Button, Chip, ImageListItem, Snackbar } from '@mui/material'
 import { FormEvent, useRef, useState } from 'react'
 import styles from './CreateEvent.module.css'
 import { createEvent } from '../../api/events/events'
+import { useProfileRoute } from '../../routes/profileRoute/profileRoute'
 
 // TODO: ���������� input �� Input, � ��������� �������� placeholder
 // ���������� enteredTitle � ��
@@ -29,6 +30,7 @@ function CreateEvent() {
   const [links, setLinks] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
   const fileIField = useRef<HTMLInputElement>(null)
+  const profile = useProfileRoute()
 
   function onSave() {
     if (!title) {
@@ -53,7 +55,10 @@ function CreateEvent() {
       links,
       tags
     })
-      .then(console.log)
+      .then(e => {
+        console.log(e)
+        profile.goTo()
+      })
       .catch(() => setError('Не удалось сохранить'))
   }
 

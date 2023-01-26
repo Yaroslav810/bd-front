@@ -141,6 +141,21 @@ async function getMyEvents(): Promise<MyEvent[]> {
   return response.data.map(mapGetEventsEventDtoToEvent)
 }
 
+async function removeEvent(id: string) {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true)
+      }, 2000)
+    })
+  }
+
+  const response = await axios.post(`${path}/delete/${id}`, {}, {
+    headers: getAuthHeader()
+  })
+  return response.data
+}
+
 export {
   getEvents,
   getEvent,
@@ -148,5 +163,6 @@ export {
   addLike,
   removeLike,
   getFavoriteEvents,
-  getMyEvents
+  getMyEvents,
+  removeEvent
 }
