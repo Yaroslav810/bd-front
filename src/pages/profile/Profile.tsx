@@ -2,8 +2,9 @@ import { ErrorContent } from '../../common/error/ErrorContent'
 import { List } from '../main/components/List'
 import { profileStates } from './model/states'
 import { Preloader } from '../../common/preloader/Preloader'
-import styles from '../main/Main.module.css'
+import styles from './Profile.module.css'
 import { useAtom } from '@reatom/npm-react'
+import { Typography } from '@mui/material'
 import { getMockCurrentUser } from '../../api/user/mockData'
 
 
@@ -32,6 +33,15 @@ function Profile() {
   return <div className={styles.main}>
     {infoUser}
     {content}
+  </div>
+
+  return <div className={styles.profile}>
+    <Typography variant="h4" gutterBottom>
+      Профиль
+    </Typography>
+    <div className={styles.content}>
+      {content}
+    </div>
   </div>
 }
 

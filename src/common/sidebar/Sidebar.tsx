@@ -37,9 +37,7 @@ function Sidebar() {
     null,
     {
       title: 'Выйти',
-      onClick: () => {
-        void logout().then(login.goTo)
-      }
+      onClick: logout
     }
   ]
 
