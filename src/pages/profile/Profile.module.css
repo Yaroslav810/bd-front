@@ -2,7 +2,6 @@
     padding: 50px;
     display: flex;
     flex-direction: column;
-    text-align: center;
 }
 
 .content {
@@ -13,18 +12,27 @@
 }
 
 .infoProfile {
-    padding: 10px 0;
+    padding: 20px;
     border-radius: 8.8px;
     box-shadow: 0 12px 25px rgb(86 87 95 / 20%);
+    transition: .2s;
 }
 
 .infoProfile:hover {
     box-shadow: 0 15px 40px rgb(0 0 0 / 20%);
     transform: translateY(-8px);
+    cursor: pointer;
 }
 
 .avatar {
     display: block;
     margin-left: auto;
     margin-right: auto
+}
+
+.user {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
