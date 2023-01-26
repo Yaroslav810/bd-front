@@ -4,7 +4,7 @@ const user: User = {
   id: '1',
   firstName: 'Yaroslav',
   lastName: 'Kuzmin',
-  login: 'Yaroslav',
+  login: 'Yaroslav@mail.com',
   type: UserType.user,
   token: ''
 }
