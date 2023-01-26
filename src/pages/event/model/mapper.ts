@@ -16,7 +16,9 @@ function mapGetEventEventDtoToEvent(eventDto: GetEventEventDto): Event {
     links: eventDto.links,
     isLikeSet: eventDto.is_like_set,
     isCanEdit: eventDto.is_can_edit,
-    isCanDelete: eventDto.is_can_delete
+    isCanDelete: eventDto.is_can_delete,
+    isUserSignUp: eventDto.is_user_sign_up,
+    signUpCount: eventDto.sign_up_count
   }
 }
 

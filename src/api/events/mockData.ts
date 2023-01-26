@@ -51,7 +51,9 @@ function getMockDataGetEvent(): EventPageEvent {
     links: ['https://ya.ru'],
     isLikeSet: false,
     isCanEdit: true,
-    isCanDelete: true
+    isCanDelete: true,
+    isUserSignUp: false,
+    signUpCount: 0
   }
 }
 

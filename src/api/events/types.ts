@@ -26,6 +26,8 @@ interface GetEventEventDto {
   is_like_set: boolean
   is_can_edit: boolean
   is_can_delete: boolean
+  is_user_sign_up: boolean
+  sign_up_count: number
 }
 
 export {

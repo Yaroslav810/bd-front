@@ -27,9 +27,10 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import EditIcon from '@mui/icons-material/Edit'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { useState, MouseEvent, useCallback } from 'react'
-import { removeEvent } from '../../api/events/events'
+import { removeEvent, signOut, signUp } from '../../api/events/events'
 import { useMainRoute } from '../../routes/mainRoute/mainRoute'
 import { useEditEventRoute } from '../../routes/editEventRoute/editEventRoute'
+import { getUser } from '../../model/states'
 
 interface ContentProps {
   event: EventType
@@ -47,6 +48,8 @@ function Content(props: ContentProps) {
   const [msg, setMsg] = useState('')
   const mainRoute = useMainRoute()
   const editEvent = useEditEventRoute()
+  const user = getUser()
+  const [sign, setSign] = useState(props.event.isUserSignUp)
 
   const onDeleteEvent = useCallback(() => {
     handleClose()
@@ -79,6 +82,22 @@ function Content(props: ContentProps) {
     </Alert>
   }
 
+  const onSignUp = useCallback(() => {
+    setSign(true)
+    signUp(props.event.id)
+      .catch(() => {
+        setSign(false)
+      })
+  }, [])
+
+  const onSignOut = useCallback(() => {
+    setSign(false)
+    signOut(props.event.id)
+      .catch(() => {
+        setSign(true)
+      })
+  }, [])
+
   return <div className={styles.container}>
     <div>
       {props.event.tags.map(tag => <Chip key={tag} label={tag} />)}
@@ -97,6 +116,14 @@ function Content(props: ContentProps) {
           title={props.event.userName}
           action={
             <CardActions>
+              <IconButton>
+                {user
+                  ? sign
+                    ? <span className={styles.link} onClick={onSignOut}>Отписаться</span>
+                    : <span className={styles.link} onClick={onSignUp}>Записаться</span>
+                  : undefined
+                }
+              </IconButton>
               <IconButton>
                 <Like id={props.event.id} isLikeSet={props.event.isLikeSet} />
               </IconButton>
@@ -167,9 +194,9 @@ function Content(props: ContentProps) {
         </div>
         <div className={styles.row}>
           <Typography variant="h6" gutterBottom className={styles.rowLabel}>
-            Максимальное количество участников:
+            Количество участников:
           </Typography>
-          {props.event.participantsCount}
+          {props.event.signUpCount}{' / '}{props.event.participantsCount}
         </div>
       </CardContent>
     </Card>

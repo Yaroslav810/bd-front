@@ -13,6 +13,8 @@ interface Event {
   isLikeSet: boolean
   isCanDelete: boolean
   isCanEdit: boolean
+  isUserSignUp: boolean
+  signUpCount: number
 }
 
 export {

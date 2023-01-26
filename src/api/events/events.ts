@@ -189,6 +189,44 @@ async function removeEvent(id: string) {
   return response.data
 }
 
+async function signUp(id: string) {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true)
+      }, 2000)
+    })
+  }
+
+  try {
+    await axios.post(`${path}/sign-up/${id}`, {}, {
+      headers: getAuthHeader()
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
+async function signOut(id: string) {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true)
+      }, 2000)
+    })
+  }
+
+  try {
+    await axios.post(`${path}/sign-out/${id}`, {}, {
+      headers: getAuthHeader()
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
 export {
   getEvents,
   getEvent,
@@ -198,5 +236,7 @@ export {
   getFavoriteEvents,
   getMyEvents,
   removeEvent,
-  updateEvent
+  updateEvent,
+  signUp,
+  signOut
 }
