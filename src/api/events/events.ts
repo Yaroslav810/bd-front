@@ -9,6 +9,7 @@ import { getAuthHeader } from '../auth'
 import { CreateEvent } from '../../pages/createEvent/model/types'
 import { FavoriteEvent } from '../../pages/favorites/model/types'
 import { MyEvent } from '../../pages/profile/model/types'
+import { UpdateEvent } from '../../pages/editEvent/model/types'
 
 const path = `${serverPath}/event`
 
@@ -68,6 +69,38 @@ async function createEvent(event: CreateEvent): Promise<boolean> {
   }
 
   await axios.post(`${path}/create`, formData, {
+    headers: getAuthHeader()
+  })
+  return true
+}
+
+async function updateEvent(event: UpdateEvent): Promise<boolean> {
+  if (isMock) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true)
+      }, 2000)
+    })
+  }
+
+  const formData = new FormData()
+  const data: string = JSON.stringify({
+    id: event.id,
+    title: event.title,
+    description: event.description,
+    start: event.start,
+    duration: event.duration,
+    price: event.price,
+    participantsCount: event.participantsCount,
+    links: event.links,
+    tags: event.tags
+  })
+  formData.append('data', data)
+  if (event.image) {
+    formData.append('image', event.image)
+  }
+
+  await axios.post(`${path}/update`, formData, {
     headers: getAuthHeader()
   })
   return true
@@ -164,5 +197,6 @@ export {
   removeLike,
   getFavoriteEvents,
   getMyEvents,
-  removeEvent
+  removeEvent,
+  updateEvent
 }

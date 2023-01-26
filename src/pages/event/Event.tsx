@@ -72,11 +72,14 @@ function Content(props: ContentProps) {
     return result
   }
 
-  return <div className={styles.container}>
-    {!!msg.length && <Alert severity="success" className={styles.alert}>
+  if (msg.length) {
+    return <Alert severity="success" className={styles.alert}>
       <AlertTitle>Успешно!</AlertTitle>
       {msg}
-    </Alert>}
+    </Alert>
+  }
+
+  return <div className={styles.container}>
     <div>
       {props.event.tags.map(tag => <Chip key={tag} label={tag} />)}
     </div>
@@ -116,7 +119,7 @@ function Content(props: ContentProps) {
                     'aria-labelledby': 'basic-button'
                   }}
                 >
-                  <MenuItem onClick={editEvent.goTo} className={styles.menuItem}><EditIcon className={styles.editIcon} />Редактировать</MenuItem>
+                  <MenuItem onClick={() => editEvent.goTo(props.event.id)} className={styles.menuItem}><EditIcon className={styles.editIcon} />Редактировать</MenuItem>
                   <MenuItem onClick={onDeleteEvent} className={styles.menuItem}><DeleteOutlineIcon color={'error'} />Удалить</MenuItem>
                 </Menu>
               </>}

@@ -1,22 +1,30 @@
 import { Alert, Button, Chip, ImageListItem, Snackbar } from '@mui/material'
 import { FormEvent, useRef, useState } from 'react'
 import styles from './EditEvent.module.css'
-import { createEvent } from '../../api/events/events'
+import { updateEvent } from '../../api/events/events'
 import { useProfileRoute } from '../../routes/profileRoute/profileRoute'
-import { MAX_LINKS, MAX_TAGS, MILLISECONDS_PER_DAY, PARTICIPANTS, PRICE } from '../../model/utils'
+import { MAX_LINKS, MAX_TAGS, MILLISECONDS_PER_OFFSET, PARTICIPANTS, PRICE } from '../../model/utils'
 import dayjs, { Dayjs } from 'dayjs'
+import { useParams } from 'react-router'
+import { useEvents } from '../event/useEvents'
+import { Preloader } from '../../common/preloader/Preloader'
+import { Event as EventType } from './../event/model/types'
 
-function EditEvent() {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+interface EditEventContentProps {
+  event: EventType
+}
+
+function EditEventContent({ event }: EditEventContentProps) {
+  const [title, setTitle] = useState(event.title)
+  const [description, setDescription] = useState(event.description)
   const [file, setFile] = useState<File | null>(null)
   const [image, setImage] = useState<string | null>(null)
-  const [price, setPrice] = useState<number>(0)
-  const [maxParticipantsCount, setMaxParticipantsCount] = useState<number>(5)
-  const [tags, setTags] = useState<string[]>([])
-  const [links, setLinks] = useState<string[]>([])
-  const [start, setStart] = useState<Dayjs>(dayjs().add(MILLISECONDS_PER_DAY))
-  const [end, setEnd] = useState<Dayjs>(dayjs().add(2 * MILLISECONDS_PER_DAY))
+  const [price, setPrice] = useState<number>(event.price ?? 0)
+  const [maxParticipantsCount, setMaxParticipantsCount] = useState<number>(event.participantsCount)
+  const [tags, setTags] = useState<string[]>(event.tags)
+  const [links, setLinks] = useState<string[]>(event.links)
+  const [start, setStart] = useState<Dayjs>(dayjs(event.start).add(MILLISECONDS_PER_OFFSET))
+  const [end, setEnd] = useState<Dayjs>(dayjs(event.start).add(MILLISECONDS_PER_OFFSET).add(event.duration))
   const [error, setError] = useState<string | null>(null)
   const fileIField = useRef<HTMLInputElement>(null)
   const profile = useProfileRoute()
@@ -36,7 +44,8 @@ function EditEvent() {
     if (start.millisecond() > end.millisecond()) {
       setError('Некорректные даты!')
     }
-    createEvent({
+    updateEvent({
+      id: event.id,
       title,
       description: description ?? undefined,
       start: start.add(-10800000).toDate(),
@@ -251,6 +260,19 @@ function EditEvent() {
         {error}
       </Alert>
     </Snackbar>}
+  </div>
+}
+
+function EditEvent() {
+  const params = useParams()
+  const {
+    event,
+    loaded
+  } = useEvents(params.id as string)
+
+  return <div>
+    {!loaded && <div className={styles.preloader}><Preloader /></div>}
+    {loaded && event !== null && <EditEventContent event={event} />}
   </div>
 }
 

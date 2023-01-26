@@ -1,5 +1,7 @@
 .alert {
-    margin-bottom: 20px;
+    margin: 50px auto 20px;
+    width: 90%;
+    max-width: 1200px;
 }
 
 .button {

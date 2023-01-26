@@ -1,4 +1,5 @@
-interface CreateEvent {
+interface UpdateEvent {
+  id: string
   title: string
   description?: string
   start: Date
@@ -11,5 +12,5 @@ interface CreateEvent {
 }
 
 export {
-  type CreateEvent
+  type UpdateEvent
 }

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router'
 
-const path = '/edit-event'
+const path = '/edit-event/:id'
 
 function editEventRoute() {
   return {
@@ -11,7 +11,7 @@ function editEventRoute() {
 function useEditEventRoute() {
   const navigate = useNavigate()
   return {
-    goTo: () => navigate(path)
+    goTo: (id: string) => navigate(`/edit-event/${id}`)
   }
 }
 
