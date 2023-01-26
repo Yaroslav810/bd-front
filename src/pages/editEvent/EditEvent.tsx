@@ -2,13 +2,13 @@ import { Alert, Button, Chip, ImageListItem, Snackbar } from '@mui/material'
 import { FormEvent, useRef, useState } from 'react'
 import styles from './EditEvent.module.css'
 import { updateEvent } from '../../api/events/events'
-import { useProfileRoute } from '../../routes/profileRoute/profileRoute'
 import { MAX_LINKS, MAX_TAGS, MILLISECONDS_PER_OFFSET, PARTICIPANTS, PRICE } from '../../model/utils'
 import dayjs, { Dayjs } from 'dayjs'
 import { useParams } from 'react-router'
 import { useEvents } from '../event/useEvents'
 import { Preloader } from '../../common/preloader/Preloader'
 import { Event as EventType } from './../event/model/types'
+import { useEventRoute } from '../../routes/eventRoute/eventRoute'
 
 interface EditEventContentProps {
   event: EventType
@@ -27,7 +27,7 @@ function EditEventContent({ event }: EditEventContentProps) {
   const [end, setEnd] = useState<Dayjs>(dayjs(event.start).add(MILLISECONDS_PER_OFFSET).add(event.duration))
   const [error, setError] = useState<string | null>(null)
   const fileIField = useRef<HTMLInputElement>(null)
-  const profile = useProfileRoute()
+  const eventRoute = useEventRoute()
 
   function onSave() {
     if (!title) {
@@ -58,7 +58,7 @@ function EditEventContent({ event }: EditEventContentProps) {
     })
       .then(e => {
         console.log(e)
-        profile.goTo()
+        eventRoute.goTo(event.id)
       })
       .catch(() => setError('Не удалось сохранить'))
   }
